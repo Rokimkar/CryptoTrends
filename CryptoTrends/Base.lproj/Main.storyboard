@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nDA-pX-prH">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="huK-qd-alD">
+            <objects>
+                <viewController id="nDA-pX-prH" customClass="HomeViewController" customModule="CryptoTrends" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="alb-ae-Usr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xcp-fz-xVV">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xcp-fz-xVV" firstAttribute="trailing" secondItem="zUc-Yd-ZnB" secondAttribute="trailing" id="7xM-Le-nHy"/>
+                            <constraint firstItem="xcp-fz-xVV" firstAttribute="top" secondItem="zUc-Yd-ZnB" secondAttribute="top" id="CY1-Ju-fkj"/>
+                            <constraint firstItem="xcp-fz-xVV" firstAttribute="bottom" secondItem="zUc-Yd-ZnB" secondAttribute="bottom" id="MQW-jh-PsH"/>
+                            <constraint firstItem="xcp-fz-xVV" firstAttribute="leading" secondItem="zUc-Yd-ZnB" secondAttribute="leading" id="wcH-8h-cOb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zUc-Yd-ZnB"/>
+                    </view>
+                    <connections>
+                        <outlet property="currencyTableView" destination="xcp-fz-xVV" id="DPs-Nw-1vf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z7S-j0-HzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23.199999999999999" y="86.806596701649184"/>
+        </scene>
+    </scenes>
+</document>

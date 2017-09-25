@@ -1,0 +1,15 @@
+PODS:
+  - Alamofire (4.5.1)
+  - Disk (0.3.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - Disk
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Disk: 0ad7b1ba8ce81e30d0c9815ae34473fd139b5219
+
+PODFILE CHECKSUM: 06cadf261ebfd1c7566f9ea7be5bc35e27190e8a
+
+COCOAPODS: 1.2.0.rc.1
