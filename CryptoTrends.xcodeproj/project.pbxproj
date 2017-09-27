@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9E2B56A11F781D4F00856E29 /* CryptoCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2B56A01F781D4F00856E29 /* CryptoCurrency.swift */; };
 		9E30B9A31F79749500DF009D /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E30B9A21F79749500DF009D /* Cache.swift */; };
+		9E30B9A71F79AD6800DF009D /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E30B9A51F79AD6700DF009D /* CurrencyTableViewCell.swift */; };
+		9E30B9A81F79AD6800DF009D /* CurrencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E30B9A61F79AD6800DF009D /* CurrencyTableViewCell.xib */; };
 		9E70D5301F771913002EC263 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D52F1F771913002EC263 /* AppDelegate.swift */; };
 		9E70D5321F771913002EC263 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D5311F771913002EC263 /* HomeViewController.swift */; };
 		9E70D5351F771913002EC263 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E70D5331F771913002EC263 /* Main.storyboard */; };
@@ -24,6 +26,8 @@
 		7DF9D4F3E6F61C8AFFB2B2D2 /* Pods-CryptoTrends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoTrends.release.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoTrends/Pods-CryptoTrends.release.xcconfig"; sourceTree = "<group>"; };
 		9E2B56A01F781D4F00856E29 /* CryptoCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrency.swift; sourceTree = "<group>"; };
 		9E30B9A21F79749500DF009D /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		9E30B9A51F79AD6700DF009D /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		9E30B9A61F79AD6800DF009D /* CurrencyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyTableViewCell.xib; sourceTree = "<group>"; };
 		9E70D52C1F771913002EC263 /* CryptoTrends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoTrends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E70D52F1F771913002EC263 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E70D5311F771913002EC263 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +79,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		9E30B9A91F79AD7700DF009D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				9E70D5311F771913002EC263 /* HomeViewController.swift */,
+				9E30B9A51F79AD6700DF009D /* CurrencyTableViewCell.swift */,
+				9E30B9A61F79AD6800DF009D /* CurrencyTableViewCell.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		9E70D5231F771913002EC263 = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				9E70D52F1F771913002EC263 /* AppDelegate.swift */,
-				9E70D5311F771913002EC263 /* HomeViewController.swift */,
+				9E30B9A91F79AD7700DF009D /* Home */,
 				9E30B9A11F79745800DF009D /* DataManager */,
 				9E30B9A41F7988E300DF009D /* Model */,
 				9E70D5331F771913002EC263 /* Main.storyboard */,
@@ -178,6 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E30B9A81F79AD6800DF009D /* CurrencyTableViewCell.xib in Resources */,
 				9E70D53A1F771913002EC263 /* LaunchScreen.storyboard in Resources */,
 				9E70D5371F771913002EC263 /* Assets.xcassets in Resources */,
 				9E70D5351F771913002EC263 /* Main.storyboard in Resources */,
@@ -239,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E30B9A71F79AD6800DF009D /* CurrencyTableViewCell.swift in Sources */,
 				9E70D5321F771913002EC263 /* HomeViewController.swift in Sources */,
 				9EB3E80C1F794DFF00DE027A /* CacheHelper.swift in Sources */,
 				9E70D5421F77BAA4002EC263 /* DataManager.swift in Sources */,

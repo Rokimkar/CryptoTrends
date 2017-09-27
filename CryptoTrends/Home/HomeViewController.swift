@@ -10,14 +10,20 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    let dataArray : [CryptoCurrency] = []
+    var dataArray : [CryptoCurrency] = []
     @IBOutlet weak var currencyTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        var thing = "Car"
+//        let closure = {
+//            print(thing)
+//        }
+//        thing = "Aeroplane"
+//        closure()
         commonInit()
         DataManager.sharedInstance.getDataForAppendingParameters(parameters: []) { (data) in
-            let currency : CryptoCurrency = data[0]
+            self.dataArray = data
             self.currencyTableView.reloadData()
         }
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,6 +32,7 @@ class HomeViewController: UIViewController {
     func commonInit(){
         self.currencyTableView.dataSource = self
         self.currencyTableView.delegate = self
+        self.currencyTableView.register(UINib.init(nibName: "CurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyTableViewCell")
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,7 +53,9 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyTableViewCell", for: indexPath) as! CurrencyTableViewCell
+        cell.bindData(currency: dataArray[indexPath.row])
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
