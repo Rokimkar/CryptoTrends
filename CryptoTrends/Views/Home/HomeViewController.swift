@@ -58,8 +58,14 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        let currencyDetailVC = CurrencyDetailViewController.init(nibName: "CurrencyDetailViewController", bundle: nil)
+        currencyDetailVC.cryptoCurrency = self.dataArray[indexPath.row]
+        self.navigationController?.pushViewController(currencyDetailVC, animated: true)
     }
 }
 

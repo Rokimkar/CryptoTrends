@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E24C2B91F7EDCFA00ED4691 /* CurrencyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E24C2B71F7EDCFA00ED4691 /* CurrencyDetailViewController.swift */; };
+		9E24C2BA1F7EDCFA00ED4691 /* CurrencyDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E24C2B81F7EDCFA00ED4691 /* CurrencyDetailViewController.xib */; };
 		9E2B56A11F781D4F00856E29 /* CryptoCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2B56A01F781D4F00856E29 /* CryptoCurrency.swift */; };
 		9E30B9A31F79749500DF009D /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E30B9A21F79749500DF009D /* Cache.swift */; };
 		9E30B9A71F79AD6800DF009D /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E30B9A51F79AD6700DF009D /* CurrencyTableViewCell.swift */; };
@@ -17,6 +19,7 @@
 		9E70D5371F771913002EC263 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E70D5361F771913002EC263 /* Assets.xcassets */; };
 		9E70D53A1F771913002EC263 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E70D5381F771913002EC263 /* LaunchScreen.storyboard */; };
 		9E70D5421F77BAA4002EC263 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D5411F77BAA4002EC263 /* DataManager.swift */; };
+		9EAE40D81F7C293200507FA7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE40D71F7C293200507FA7 /* Images.xcassets */; };
 		9EB3E80C1F794DFF00DE027A /* CacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB3E80B1F794DFF00DE027A /* CacheHelper.swift */; };
 		A6E33320CD122D6AD28B8939 /* Pods_CryptoTrends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA1BF7C2AEB095B557D65C9 /* Pods_CryptoTrends.framework */; };
 /* End PBXBuildFile section */
@@ -24,6 +27,8 @@
 /* Begin PBXFileReference section */
 		793911DA2B57EED0512E2F71 /* Pods-CryptoTrends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoTrends.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoTrends/Pods-CryptoTrends.debug.xcconfig"; sourceTree = "<group>"; };
 		7DF9D4F3E6F61C8AFFB2B2D2 /* Pods-CryptoTrends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoTrends.release.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoTrends/Pods-CryptoTrends.release.xcconfig"; sourceTree = "<group>"; };
+		9E24C2B71F7EDCFA00ED4691 /* CurrencyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDetailViewController.swift; sourceTree = "<group>"; };
+		9E24C2B81F7EDCFA00ED4691 /* CurrencyDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyDetailViewController.xib; sourceTree = "<group>"; };
 		9E2B56A01F781D4F00856E29 /* CryptoCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrency.swift; sourceTree = "<group>"; };
 		9E30B9A21F79749500DF009D /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		9E30B9A51F79AD6700DF009D /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
@@ -36,6 +41,7 @@
 		9E70D5391F771913002EC263 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E70D53B1F771913002EC263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E70D5411F77BAA4002EC263 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		9EAE40D71F7C293200507FA7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9EB3E80B1F794DFF00DE027A /* CacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHelper.swift; sourceTree = "<group>"; };
 		CDA1BF7C2AEB095B557D65C9 /* Pods_CryptoTrends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoTrends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -59,6 +65,24 @@
 				7DF9D4F3E6F61C8AFFB2B2D2 /* Pods-CryptoTrends.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9E24C2B21F7EDC7C00ED4691 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9E30B9A91F79AD7700DF009D /* Home */,
+				9E24C2BB1F7EDD0200ED4691 /* CurrencyDetail */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9E24C2BB1F7EDD0200ED4691 /* CurrencyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9E24C2B71F7EDCFA00ED4691 /* CurrencyDetailViewController.swift */,
+				9E24C2B81F7EDCFA00ED4691 /* CurrencyDetailViewController.xib */,
+			);
+			path = CurrencyDetail;
 			sourceTree = "<group>";
 		};
 		9E30B9A11F79745800DF009D /* DataManager */ = {
@@ -111,11 +135,12 @@
 			isa = PBXGroup;
 			children = (
 				9E70D52F1F771913002EC263 /* AppDelegate.swift */,
-				9E30B9A91F79AD7700DF009D /* Home */,
+				9E24C2B21F7EDC7C00ED4691 /* Views */,
 				9E30B9A11F79745800DF009D /* DataManager */,
 				9E30B9A41F7988E300DF009D /* Model */,
 				9E70D5331F771913002EC263 /* Main.storyboard */,
 				9E70D5361F771913002EC263 /* Assets.xcassets */,
+				9EAE40D71F7C293200507FA7 /* Images.xcassets */,
 				9E70D5381F771913002EC263 /* LaunchScreen.storyboard */,
 				9E70D53B1F771913002EC263 /* Info.plist */,
 			);
@@ -192,7 +217,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E24C2BA1F7EDCFA00ED4691 /* CurrencyDetailViewController.xib in Resources */,
 				9E30B9A81F79AD6800DF009D /* CurrencyTableViewCell.xib in Resources */,
+				9EAE40D81F7C293200507FA7 /* Images.xcassets in Resources */,
 				9E70D53A1F771913002EC263 /* LaunchScreen.storyboard in Resources */,
 				9E70D5371F771913002EC263 /* Assets.xcassets in Resources */,
 				9E70D5351F771913002EC263 /* Main.storyboard in Resources */,
@@ -256,6 +283,7 @@
 			files = (
 				9E30B9A71F79AD6800DF009D /* CurrencyTableViewCell.swift in Sources */,
 				9E70D5321F771913002EC263 /* HomeViewController.swift in Sources */,
+				9E24C2B91F7EDCFA00ED4691 /* CurrencyDetailViewController.swift in Sources */,
 				9EB3E80C1F794DFF00DE027A /* CacheHelper.swift in Sources */,
 				9E70D5421F77BAA4002EC263 /* DataManager.swift in Sources */,
 				9E70D5301F771913002EC263 /* AppDelegate.swift in Sources */,
