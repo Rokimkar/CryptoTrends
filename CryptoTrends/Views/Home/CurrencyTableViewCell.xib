@@ -20,37 +20,27 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4S-BT-WZ2">
-                        <rect key="frame" x="8" y="10" width="349" height="50.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                        <rect key="frame" x="8" y="10" width="349" height="40.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="axj-Zg-apg">
-                        <rect key="frame" x="10" y="70.5" width="60" height="60"/>
+                        <rect key="frame" x="10" y="60.5" width="70" height="70"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="B2e-zJ-1nW"/>
-                            <constraint firstAttribute="width" constant="60" id="i3t-j0-jqR"/>
+                            <constraint firstAttribute="height" constant="70" id="B2e-zJ-1nW"/>
+                            <constraint firstAttribute="width" constant="70" id="i3t-j0-jqR"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dF-XG-AdL">
-                        <rect key="frame" x="293" y="89.5" width="56" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="7Zb-wc-R3q"/>
-                            <constraint firstAttribute="width" constant="56" id="g68-kw-D0C"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwp-HG-qLl">
-                        <rect key="frame" x="78" y="90.5" width="210" height="20.5"/>
+                        <rect key="frame" x="88" y="85" width="261" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKR-SG-qLJ">
-                        <rect key="frame" x="18" y="78.5" width="44" height="44"/>
+                        <rect key="frame" x="23" y="73.5" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="kDf-qo-ezU"/>
                             <constraint firstAttribute="width" constant="44" id="pUs-Ji-2mh"/>
@@ -63,10 +53,8 @@
                 <constraints>
                     <constraint firstItem="axj-Zg-apg" firstAttribute="top" secondItem="x4S-BT-WZ2" secondAttribute="bottom" constant="10" id="0Ds-xH-mnJ"/>
                     <constraint firstItem="x4S-BT-WZ2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="5SM-UM-Kf5"/>
-                    <constraint firstItem="1dF-XG-AdL" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Gz5-Ux-nrN"/>
-                    <constraint firstItem="1dF-XG-AdL" firstAttribute="centerY" secondItem="vwp-HG-qLl" secondAttribute="centerY" id="IXA-wD-QDd"/>
+                    <constraint firstItem="vwp-HG-qLl" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Ac3-wi-2qo"/>
                     <constraint firstItem="bKR-SG-qLJ" firstAttribute="centerY" secondItem="axj-Zg-apg" secondAttribute="centerY" id="Num-PD-C0f"/>
-                    <constraint firstItem="1dF-XG-AdL" firstAttribute="leading" secondItem="vwp-HG-qLl" secondAttribute="trailing" constant="5" id="Qxh-Sf-4SO"/>
                     <constraint firstItem="axj-Zg-apg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="W2Y-8q-JZT"/>
                     <constraint firstItem="vwp-HG-qLl" firstAttribute="leading" secondItem="axj-Zg-apg" secondAttribute="trailing" constant="8" id="XwK-Mn-fU7"/>
                     <constraint firstItem="axj-Zg-apg" firstAttribute="centerY" secondItem="vwp-HG-qLl" secondAttribute="centerY" id="h9a-0N-EBf"/>
@@ -81,7 +69,6 @@
                 <outlet property="currencyDescription" destination="vwp-HG-qLl" id="sbw-kt-WSu"/>
                 <outlet property="currencyImage" destination="axj-Zg-apg" id="RHx-br-Bia"/>
                 <outlet property="currencyTitle" destination="x4S-BT-WZ2" id="acv-Fw-Ip6"/>
-                <outlet property="currencyVolume" destination="1dF-XG-AdL" id="Gdn-Gi-EAh"/>
                 <outlet property="overlappinglabel" destination="bKR-SG-qLJ" id="R5l-Gg-jGX"/>
             </connections>
             <point key="canvasLocation" x="52.5" y="102.5"/>

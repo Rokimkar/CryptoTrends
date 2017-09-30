@@ -10,7 +10,6 @@ import UIKit
 
 class CurrencyTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var currencyVolume: UILabel!
     @IBOutlet weak var currencyDescription: UILabel!
     @IBOutlet weak var currencyTitle: UILabel!
     @IBOutlet weak var currencyImage: UIImageView!
@@ -24,13 +23,36 @@ class CurrencyTableViewCell: UITableViewCell {
     
     func commonInit(){
         currencyImage.layer.cornerRadius = currencyImage.frame.size.height/2
+        currencyDescription.numberOfLines = 0
+        currencyTitle.numberOfLines = 0
     }
     
     func bindData(currency : CryptoCurrency){
         currencyTitle.text = currency.name
-        currencyDescription.text = currency.priceUsd
-        currencyVolume.text = currency.availableSupply
+        currencyDescription.attributedText = fillCurrencyDescription(currency: currency)
         bindImage(name: currency.name)
+    }
+    
+    func fillCurrencyDescription(currency:CryptoCurrency) -> NSMutableAttributedString{
+        let currencyDescription = "Price : \(currency.priceUsd!) (\(currency.percentChangedLast1Hr!))%\n\(currency.symbol!)"
+        
+        //Font
+        
+        let attributedString = NSMutableAttributedString.init(string: currencyDescription)
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium), range: NSRange.init(location: 0, length: 6))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium), range: NSRange.init(location: 8, length: currency.priceUsd!.count))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), range: NSRange.init(location: 8+currency.priceUsd!.count+1, length: currency.percentChangedLast1Hr!.count+3))
+        
+        //Color
+        
+        let lastHrPriceChange = currency.percentChangedLast1Hr!
+        if String(lastHrPriceChange.prefix(upTo: lastHrPriceChange.index(lastHrPriceChange.startIndex, offsetBy: 1))) == "-"{
+             attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 200/255, green: 81/255, blue: 56/255, alpha: 1.0), range: NSRange.init(location: 8+currency.priceUsd!.count+1, length: currency.percentChangedLast1Hr!.count+3))//red color
+        }else{
+             attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 84/255, green: 167/255, blue: 65/255, alpha: 1.0), range: NSRange.init(location: 8+currency.priceUsd!.count+1, length: currency.percentChangedLast1Hr!.count+3))//Green color
+        }
+        
+        return attributedString
     }
     
     func bindImage(name : String?){
