@@ -28,9 +28,25 @@ class CurrencyTableViewCell: UITableViewCell {
     }
     
     func bindData(currency : CryptoCurrency){
-        currencyTitle.text = currency.name
+        currencyTitle.attributedText = fillCurrencyTitle(currency: currency)
         currencyDescription.attributedText = fillCurrencyDescription(currency: currency)
         bindImage(name: currency.name)
+    }
+    
+    func fillCurrencyTitle(currency : CryptoCurrency) -> NSMutableAttributedString{
+        let currencyTitleText = "\(currency.name!) (\(currency.symbol!))"
+        let attributedString = NSMutableAttributedString.init(string: currencyTitleText)
+        
+        //Font
+        
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 24, weight: UIFont.Weight.bold), range: NSRange.init(location: 0, length: currency.name!.count))
+        
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium), range: NSRange.init(location: currency.name!.count+1, length: currency.symbol!.count+2))
+        
+        //Color
+        
+        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.darkGray, range: NSRange.init(location: currency.name!.count+1, length: currency.symbol!.count+2))
+        return attributedString
     }
     
     func fillCurrencyDescription(currency:CryptoCurrency) -> NSMutableAttributedString{
