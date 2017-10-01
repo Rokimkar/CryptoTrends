@@ -33,6 +33,7 @@ class HomeViewController: UIViewController {
         self.currencyTableView.dataSource = self
         self.currencyTableView.delegate = self
         self.currencyTableView.register(UINib.init(nibName: "CurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyTableViewCell")
+        self.currencyTableView.separatorStyle = .none
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,6 +55,7 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyTableViewCell", for: indexPath) as! CurrencyTableViewCell
+        cell.selectionStyle = .none
         cell.bindData(currency: dataArray[indexPath.row])
         return cell
     }

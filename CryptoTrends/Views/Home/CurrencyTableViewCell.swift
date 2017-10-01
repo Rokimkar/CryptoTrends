@@ -14,6 +14,7 @@ class CurrencyTableViewCell: UITableViewCell {
     @IBOutlet weak var currencyTitle: UILabel!
     @IBOutlet weak var currencyImage: UIImageView!
     @IBOutlet weak var overlappinglabel: UILabel!
+    @IBOutlet weak var cellBackgroundView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +26,7 @@ class CurrencyTableViewCell: UITableViewCell {
         currencyImage.layer.cornerRadius = currencyImage.frame.size.height/2
         currencyDescription.numberOfLines = 0
         currencyTitle.numberOfLines = 0
+        self.backgroundColor = UIColor.brown
     }
     
     func bindData(currency : CryptoCurrency){
@@ -50,25 +52,53 @@ class CurrencyTableViewCell: UITableViewCell {
     }
     
     func fillCurrencyDescription(currency:CryptoCurrency) -> NSMutableAttributedString{
-        let currencyDescription = "Price : \(currency.priceUsd!) (\(currency.percentChangedLast1Hr!))%\n\(currency.symbol!)"
+        let priceTag = "Price : "
+        let availableSupplyTag = "Available Supply : "
+        let lastUpdatedTag = "Last updated \(getTimeDifference(time: currency.lastUpdated!))"
+        let availableSupplySuffix = GenericFunctions.suffixNumber(inputNumber: currency.availableSupply!)
+        let currencyDescription = "\(priceTag)\(currency.priceUsd!) (\(currency.percentChangedLast1Hr!)%)\n\(availableSupplyTag)\(availableSupplySuffix)\n\(lastUpdatedTag)"
         
         //Font
         
         let attributedString = NSMutableAttributedString.init(string: currencyDescription)
-        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium), range: NSRange.init(location: 0, length: 6))
-        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium), range: NSRange.init(location: 8, length: currency.priceUsd!.count))
-        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), range: NSRange.init(location: 8+currency.priceUsd!.count+1, length: currency.percentChangedLast1Hr!.count+3))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium), range: NSRange.init(location: 0, length: priceTag.count))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium), range: NSRange.init(location: priceTag.count, length: currency.priceUsd!.count))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), range: NSRange.init(location: priceTag.count+currency.priceUsd!.count+1, length: currency.percentChangedLast1Hr!.count+3))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium), range: NSRange.init(location: priceTag.count+currency.priceUsd!.count+5+currency.percentChangedLast1Hr!.count, length: availableSupplyTag.count+availableSupplySuffix.count))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.light), range: NSRange.init(location: currencyDescription.count - lastUpdatedTag.count, length: lastUpdatedTag.count))
         
         //Color
         
         let lastHrPriceChange = currency.percentChangedLast1Hr!
         if String(lastHrPriceChange.prefix(upTo: lastHrPriceChange.index(lastHrPriceChange.startIndex, offsetBy: 1))) == "-"{
-             attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 200/255, green: 81/255, blue: 56/255, alpha: 1.0), range: NSRange.init(location: 8+currency.priceUsd!.count+1, length: currency.percentChangedLast1Hr!.count+3))//red color
+             attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 200/255, green: 81/255, blue: 56/255, alpha: 1.0), range: NSRange.init(location: priceTag.count+currency.priceUsd!.count+1, length: currency.percentChangedLast1Hr!.count+3))//red color
         }else{
-             attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 84/255, green: 167/255, blue: 65/255, alpha: 1.0), range: NSRange.init(location: 8+currency.priceUsd!.count+1, length: currency.percentChangedLast1Hr!.count+3))//Green color
+             attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 84/255, green: 167/255, blue: 65/255, alpha: 1.0), range: NSRange.init(location: priceTag.count+currency.priceUsd!.count+1, length: currency.percentChangedLast1Hr!.count+3))//Green color
         }
+        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.darkGray, range: NSRange.init(location: currencyDescription.count - lastUpdatedTag.count, length: lastUpdatedTag.count))
+        
+        //Paragraph
+        
+        let paragraphAttributeLineSpacing = NSMutableParagraphStyle.init()
+        paragraphAttributeLineSpacing.lineSpacing = 10
+        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphAttributeLineSpacing, range: NSRange.init(location: priceTag.count+currency.priceUsd!.count+5+currency.percentChangedLast1Hr!.count, length: currencyDescription.count-(priceTag.count+currency.priceUsd!.count+5+currency.percentChangedLast1Hr!.count)))
+        let paragraphAttributeRightAlignment = NSMutableParagraphStyle.init()
+        paragraphAttributeRightAlignment.alignment = .right
+        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphAttributeRightAlignment, range: NSRange.init(location: currencyDescription.count - lastUpdatedTag.count, length: lastUpdatedTag.count))
         
         return attributedString
+    }
+    
+    func getTimeDifference(time:String) -> String{
+        let lastUpdatedDate = Date.init(timeIntervalSince1970: Double(time)!)
+        let timeDiffernce = -(Int((lastUpdatedDate.timeIntervalSinceNow)))
+        var timeDifferceString = ""
+        if timeDiffernce < 60{
+            timeDifferceString = "\(timeDiffernce) seconds ago"
+        }else{
+            timeDifferceString = "\(timeDiffernce/60) minutes ago"
+        }
+        return timeDifferceString
     }
     
     func bindImage(name : String?){

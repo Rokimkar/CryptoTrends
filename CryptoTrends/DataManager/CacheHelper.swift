@@ -23,7 +23,7 @@ class CacheHelper: NSObject {
     class func getCacheData(url : String, success : ([CryptoCurrency]) -> Void,failure : (_ error:Error) -> Void){
         do{
             let cacheData = try Disk.retrieve(url, from: .documents, as: Cache.self)
-            let now = Date(timeIntervalSinceReferenceDate:NSTimeIntervalSince1970)
+            let now = Date() //Date(timeIntervalSinceReferenceDate:NSTimeIntervalSince1970)
             let timeDifference = abs(Int(cacheData.lastSavedTime!.timeIntervalSince(now))/60) //in minutes
             if timeDifference < 5{
                 success(cacheData.data!)
