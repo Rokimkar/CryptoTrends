@@ -22,6 +22,8 @@
 		9E70D5421F77BAA4002EC263 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D5411F77BAA4002EC263 /* DataManager.swift */; };
 		9EAE40D81F7C293200507FA7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE40D71F7C293200507FA7 /* Images.xcassets */; };
 		9EB3E80C1F794DFF00DE027A /* CacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB3E80B1F794DFF00DE027A /* CacheHelper.swift */; };
+		9EC069411F8287990073DB52 /* CurrencyDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0693F1F8287990073DB52 /* CurrencyDetailTableViewCell.swift */; };
+		9EC069421F8287990073DB52 /* CurrencyDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC069401F8287990073DB52 /* CurrencyDetailTableViewCell.xib */; };
 		A6E33320CD122D6AD28B8939 /* Pods_CryptoTrends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA1BF7C2AEB095B557D65C9 /* Pods_CryptoTrends.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		9E70D5411F77BAA4002EC263 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		9EAE40D71F7C293200507FA7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9EB3E80B1F794DFF00DE027A /* CacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHelper.swift; sourceTree = "<group>"; };
+		9EC0693F1F8287990073DB52 /* CurrencyDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDetailTableViewCell.swift; sourceTree = "<group>"; };
+		9EC069401F8287990073DB52 /* CurrencyDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyDetailTableViewCell.xib; sourceTree = "<group>"; };
 		CDA1BF7C2AEB095B557D65C9 /* Pods_CryptoTrends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoTrends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -83,6 +87,7 @@
 			children = (
 				9E24C2B71F7EDCFA00ED4691 /* CurrencyDetailViewController.swift */,
 				9E24C2B81F7EDCFA00ED4691 /* CurrencyDetailViewController.xib */,
+				9EC0693E1F8287510073DB52 /* CurrencyDetailCell */,
 			);
 			path = CurrencyDetail;
 			sourceTree = "<group>";
@@ -148,6 +153,15 @@
 				9E70D53B1F771913002EC263 /* Info.plist */,
 			);
 			path = CryptoTrends;
+			sourceTree = "<group>";
+		};
+		9EC0693E1F8287510073DB52 /* CurrencyDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				9EC0693F1F8287990073DB52 /* CurrencyDetailTableViewCell.swift */,
+				9EC069401F8287990073DB52 /* CurrencyDetailTableViewCell.xib */,
+			);
+			path = CurrencyDetailCell;
 			sourceTree = "<group>";
 		};
 		E077E01C2FDAADAE019B35CB /* Frameworks */ = {
@@ -222,6 +236,7 @@
 			files = (
 				9E24C2BA1F7EDCFA00ED4691 /* CurrencyDetailViewController.xib in Resources */,
 				9E30B9A81F79AD6800DF009D /* CurrencyTableViewCell.xib in Resources */,
+				9EC069421F8287990073DB52 /* CurrencyDetailTableViewCell.xib in Resources */,
 				9EAE40D81F7C293200507FA7 /* Images.xcassets in Resources */,
 				9E70D53A1F771913002EC263 /* LaunchScreen.storyboard in Resources */,
 				9E70D5371F771913002EC263 /* Assets.xcassets in Resources */,
@@ -289,6 +304,7 @@
 				9E70D5321F771913002EC263 /* HomeViewController.swift in Sources */,
 				9E24C2B91F7EDCFA00ED4691 /* CurrencyDetailViewController.swift in Sources */,
 				9EB3E80C1F794DFF00DE027A /* CacheHelper.swift in Sources */,
+				9EC069411F8287990073DB52 /* CurrencyDetailTableViewCell.swift in Sources */,
 				9E70D5421F77BAA4002EC263 /* DataManager.swift in Sources */,
 				9E70D5301F771913002EC263 /* AppDelegate.swift in Sources */,
 				9E30B9A31F79749500DF009D /* Cache.swift in Sources */,

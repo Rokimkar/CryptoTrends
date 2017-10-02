@@ -77,6 +77,8 @@ class CurrencyTableViewCell: UITableViewCell {
              attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 84/255, green: 167/255, blue: 65/255, alpha: 1.0), range: NSRange.init(location: priceTag.count+currency.priceUsd!.count+1, length: currency.percentChangedLast1Hr!.count+3))//Green color
         }
         attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.darkGray, range: NSRange.init(location: currencyDescription.count - lastUpdatedTag.count, length: lastUpdatedTag.count))
+        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: priceTag.count, length: currency.priceUsd!.count))
+        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: priceTag.count+currency.priceUsd!.count+currency.percentChangedLast1Hr!.count+3+availableSupplyTag.count, length: currency.availableSupply!.count))
         
         //Paragraph
         
@@ -96,7 +98,7 @@ class CurrencyTableViewCell: UITableViewCell {
         var timeDifferceString = ""
         if timeDiffernce < 60{
             timeDifferceString = "\(timeDiffernce) seconds ago"
-        }else if timeDiffernce/3600 > 1{
+        }else if timeDiffernce/3600 >= 1{
             timeDifferceString = "\(timeDiffernce/3600) hours ago"
         }else{
             timeDifferceString = "\(timeDiffernce/60) minutes ago"
