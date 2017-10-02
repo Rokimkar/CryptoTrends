@@ -34,6 +34,17 @@ class HomeViewController: UIViewController {
         self.currencyTableView.delegate = self
         self.currencyTableView.register(UINib.init(nibName: "CurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyTableViewCell")
         self.currencyTableView.separatorStyle = .none
+        self.view.backgroundColor = UIColor.clear
+        self.currencyTableView.backgroundColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
+        self.title = "CryptoTrends"
+        setUpNavigationBar()
+    }
+    
+    func setUpNavigationBar(){
+        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 125/255, green: 21/255, blue: 24/255, alpha: 0.4)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        //self.navigationController?.navigationBar.isTranslucent = false
     }
     
     override func didReceiveMemoryWarning() {

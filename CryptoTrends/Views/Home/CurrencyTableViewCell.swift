@@ -26,7 +26,8 @@ class CurrencyTableViewCell: UITableViewCell {
         currencyImage.layer.cornerRadius = currencyImage.frame.size.height/2
         currencyDescription.numberOfLines = 0
         currencyTitle.numberOfLines = 0
-        self.backgroundColor = UIColor.brown
+        self.backgroundColor = UIColor.clear
+        cellBackgroundView.layer.cornerRadius = 5
     }
     
     func bindData(currency : CryptoCurrency){
@@ -95,6 +96,8 @@ class CurrencyTableViewCell: UITableViewCell {
         var timeDifferceString = ""
         if timeDiffernce < 60{
             timeDifferceString = "\(timeDiffernce) seconds ago"
+        }else if timeDiffernce/3600 > 1{
+            timeDifferceString = "\(timeDiffernce/3600) hours ago"
         }else{
             timeDifferceString = "\(timeDiffernce/60) minutes ago"
         }
