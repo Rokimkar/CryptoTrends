@@ -17,14 +17,14 @@ class CurrencyDetailTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func bindData(indexpath : IndexPath,data : String){
-        detailLabel.text = data
+    func bindData(indexpath : IndexPath,data : NSMutableAttributedString){
+        detailLabel.attributedText = data
         switch indexpath.row {
         case 0:
             detailLabel.font = UIFont.systemFont(ofSize: 40, weight: UIFont.Weight.bold)
             break
         default:
-            detailLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.bold)
+            //detailLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.bold)
             break
         }
     }

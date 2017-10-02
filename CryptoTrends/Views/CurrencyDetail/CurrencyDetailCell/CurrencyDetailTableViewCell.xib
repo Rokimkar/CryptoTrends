@@ -19,14 +19,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qb-RQ-SqJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
+                        <rect key="frame" x="10" y="0.0" width="310" height="54.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="4qb-RQ-SqJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="32Q-Cy-hg7"/>
+                    <constraint firstItem="4qb-RQ-SqJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="32Q-Cy-hg7"/>
                     <constraint firstAttribute="bottom" secondItem="4qb-RQ-SqJ" secondAttribute="bottom" id="7Lw-Af-6eQ"/>
                     <constraint firstAttribute="trailing" secondItem="4qb-RQ-SqJ" secondAttribute="trailing" id="XHm-ob-IhO"/>
                     <constraint firstItem="4qb-RQ-SqJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="dLe-Do-mrC"/>
