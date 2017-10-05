@@ -34,7 +34,7 @@ class CurrencyDetailViewController: UIViewController {
         self.view.backgroundColor = UIColor.white
         self.cryptoCurrencyDetailTableView.backgroundColor = UIColor.clear
         self.navigationController?.navigationBar.isHidden = true
-        self.setTextForCurrencyDetailLabel(currencyNameFont: 25, lastUpdatedFont: 12)
+        self.setTextForCurrencyDetailLabel(currencyNameFont: 35, lastUpdatedFont: 12)
         self.currencyImageView.layer.shadowColor = UIColor.black.cgColor
         self.currencyImageView.layer.shadowRadius = CGFloat(5.0)
         self.currencyImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
@@ -183,9 +183,9 @@ extension CurrencyDetailViewController : UITableViewDelegate,UITableViewDataSour
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -24{
-            self.setTextForCurrencyDetailLabel(currencyNameFont: (25+(7*(log(-scrollView.contentOffset.y)-log(24)))), lastUpdatedFont: (12+(3*(log(-scrollView.contentOffset.y)-log(24)))))
+            self.setTextForCurrencyDetailLabel(currencyNameFont: (35+(7*(log(-scrollView.contentOffset.y)-log(24)))), lastUpdatedFont: (12+(3*(log(-scrollView.contentOffset.y)-log(24)))))
         }else{
-            self.setTextForCurrencyDetailLabel(currencyNameFont: 25, lastUpdatedFont: 12)
+            self.setTextForCurrencyDetailLabel(currencyNameFont: 35, lastUpdatedFont: 12)
         }
     }
 }
