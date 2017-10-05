@@ -51,7 +51,7 @@ class CurrencyDetailViewController: UIViewController {
         return UIColor.white
     }
     
-    func setNavigationTitleWithAnimation(isSet : Bool){
+    func setNavigationTitle(isSet : Bool){
         if isSet == true{
                 self.title = self.cryptoCurrency?.name
         }else {
@@ -175,15 +175,15 @@ extension CurrencyDetailViewController : UITableViewDelegate,UITableViewDataSour
         if let firstTableCell = self.cryptoCurrencyDetailTableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? CurrencyDetailTableViewCell{
             let detailAttributedText = NSMutableAttributedString.init(string: cryptoCurrency!.name!)
             if scrollView.contentOffset.y > -20{
-                setNavigationTitleWithAnimation(isSet: true)
+                setNavigationTitle(isSet: true)
             }else if scrollView.contentOffset.y < -64{
                 detailAttributedText.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: (40+(15*(log(-scrollView.contentOffset.y)-log(64)))), weight: UIFont.Weight.bold), range: NSRange.init(location: 0, length: cryptoCurrency!.name!.count))
                 firstTableCell.detailLabel.attributedText = detailAttributedText
-                setNavigationTitleWithAnimation(isSet: false)
+                setNavigationTitle(isSet: false)
             }else{
                 detailAttributedText.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 40, weight: UIFont.Weight.bold), range: NSRange.init(location: 0, length: cryptoCurrency!.name!.count))
                 firstTableCell.detailLabel.attributedText = detailAttributedText
-                setNavigationTitleWithAnimation(isSet: false)
+                setNavigationTitle(isSet: false)
             }
         }
     }
