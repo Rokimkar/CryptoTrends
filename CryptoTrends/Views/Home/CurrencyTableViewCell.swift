@@ -28,6 +28,11 @@ class CurrencyTableViewCell: UITableViewCell {
         currencyTitle.numberOfLines = 0
         self.backgroundColor = UIColor.clear
         cellBackgroundView.layer.cornerRadius = 5
+        self.currencyImage.layer.shadowColor = UIColor.black.cgColor
+        self.currencyImage.layer.shadowRadius = CGFloat(5.0)
+        self.currencyImage.layer.shadowOffset = CGSize(width: 1, height: 1)
+        self.currencyImage.layer.shadowOpacity = 1
+        self.currencyImage.clipsToBounds = false
     }
     
     func bindData(currency : CryptoCurrency){
@@ -55,7 +60,7 @@ class CurrencyTableViewCell: UITableViewCell {
     func fillCurrencyDescription(currency:CryptoCurrency) -> NSMutableAttributedString{
         let priceTag = "Price : "
         let availableSupplyTag = "Available Supply : "
-        let lastUpdatedTag = "Last updated \(getTimeDifference(time: currency.lastUpdated!))"
+        let lastUpdatedTag = "Last updated \(GenericFunctions.getTimeDifferenceFromNow(time: currency.lastUpdated!))"
         let availableSupplySuffix = GenericFunctions.suffixNumber(inputNumber: currency.availableSupply!)
         let currencyDescription = "\(priceTag)\(currency.priceUsd!) (\(currency.percentChangedLast1Hr!)%)\n\(availableSupplyTag)\(availableSupplySuffix)\n\(lastUpdatedTag)"
         
@@ -90,20 +95,6 @@ class CurrencyTableViewCell: UITableViewCell {
         attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphAttributeRightAlignment, range: NSRange.init(location: currencyDescription.count - lastUpdatedTag.count, length: lastUpdatedTag.count))
         
         return attributedString
-    }
-    
-    func getTimeDifference(time:String) -> String{
-        let lastUpdatedDate = Date.init(timeIntervalSince1970: Double(time)!)
-        let timeDiffernce = -(Int((lastUpdatedDate.timeIntervalSinceNow)))
-        var timeDifferceString = ""
-        if timeDiffernce < 60{
-            timeDifferceString = "\(timeDiffernce) seconds ago"
-        }else if timeDiffernce/3600 >= 1{
-            timeDifferceString = "\(timeDiffernce/3600) hours ago"
-        }else{
-            timeDifferceString = "\(timeDiffernce/60) minutes ago"
-        }
-        return timeDifferceString
     }
     
     func bindImage(name : String?){

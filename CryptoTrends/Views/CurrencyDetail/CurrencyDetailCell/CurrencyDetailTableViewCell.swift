@@ -14,19 +14,17 @@ class CurrencyDetailTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        commontInit()
         // Initialization code
+    }
+    
+    func commontInit(){
+        self.backgroundColor = UIColor.clear
+        self.detailLabel.backgroundColor = UIColor.clear
     }
     
     func bindData(indexpath : IndexPath,data : NSMutableAttributedString){
         detailLabel.attributedText = data
-        switch indexpath.row {
-        case 0:
-            detailLabel.font = UIFont.systemFont(ofSize: 40, weight: UIFont.Weight.bold)
-            break
-        default:
-            //detailLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.bold)
-            break
-        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

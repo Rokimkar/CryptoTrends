@@ -23,4 +23,18 @@ class GenericFunctions: NSObject {
         let roundedNum:Double = round(10 * number / pow(1000.0,Double(exp))) / 10
         return "\(sign)\(roundedNum)\(units[exp-1])"
     }
+    
+    class func getTimeDifferenceFromNow(time:String) -> String{
+        let lastUpdatedDate = Date.init(timeIntervalSince1970: Double(time)!)
+        let timeDiffernce = -(Int((lastUpdatedDate.timeIntervalSinceNow)))
+        var timeDifferceString = ""
+        if timeDiffernce < 60{
+            timeDifferceString = "\(timeDiffernce) seconds ago"
+        }else if timeDiffernce/3600 >= 1{
+            timeDifferceString = "\(timeDiffernce/3600) hours ago"
+        }else{
+            timeDifferceString = "\(timeDiffernce/60) minutes ago"
+        }
+        return timeDifferceString
+    }
 }

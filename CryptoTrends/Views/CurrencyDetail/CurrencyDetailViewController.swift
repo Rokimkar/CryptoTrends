@@ -10,6 +10,10 @@ import UIKit
 
 class CurrencyDetailViewController: UIViewController {
     
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var currencyDetailLabel: UILabel!
+    @IBOutlet weak var backGroundImageView: UIImageView!
+    @IBOutlet weak var currencyImageView: UIImageView!
     @IBOutlet weak var cryptoCurrencyDetailTableView: UITableView!
     
     var cryptoCurrency : CryptoCurrency?
@@ -25,12 +29,22 @@ class CurrencyDetailViewController: UIViewController {
         self.cryptoCurrencyDetailTableView.delegate = self
         self.cryptoCurrencyDetailTableView.register(UINib.init(nibName: "CurrencyDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyDetailTableViewCell")
         self.cryptoCurrencyDetailTableView.separatorStyle = .none
-        self.cryptoCurrencyDetailTableView.backgroundColor = getAverageColorValueForCurrency()
-        self.view.backgroundColor = UIColor.black
+        self.currencyDetailLabel.numberOfLines = 0
+        self.backGroundImageView.backgroundColor = getAverageColorValueForCurrency()
+        self.view.backgroundColor = UIColor.white
+        self.cryptoCurrencyDetailTableView.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.isHidden = true
+        self.setTextForCurrencyDetailLabel(currencyNameFont: 25, lastUpdatedFont: 12)
+        self.currencyImageView.layer.shadowColor = UIColor.black.cgColor
+        self.currencyImageView.layer.shadowRadius = CGFloat(5.0)
+        self.currencyImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.currencyImageView.layer.shadowOpacity = 1
+        self.currencyImageView.clipsToBounds = false
     }
     
     func getAverageColorValueForCurrency() -> UIColor{
         if let currencyImage = UIImage.init(named: cryptoCurrency!.name!){
+            currencyImageView.image = currencyImage
             var bitmap = [UInt8](repeating : 0,count : 4)
             let context = CIContext(options : nil)
             let inputImage = CIImage(image:currencyImage)
@@ -45,18 +59,22 @@ class CurrencyDetailViewController: UIViewController {
             context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: kCIFormatRGBA8, colorSpace: CGColorSpaceCreateDeviceRGB())
             
             // Compute result.
-            let result = UIColor.init(red: CGFloat(bitmap[0])/255, green: CGFloat(bitmap[1])/255, blue: CGFloat(bitmap[2])/255, alpha: CGFloat(bitmap[3])/255)
+            let result = UIColor.init(red: 1.0-CGFloat(bitmap[0])/255, green: 1.0-CGFloat(bitmap[1])/255, blue: 1.0-CGFloat(bitmap[2])/255, alpha: 0.6)
+            self.backgroundView.backgroundColor =  UIColor.init(red:CGFloat(bitmap[0])/255, green:CGFloat(bitmap[1])/255, blue:CGFloat(bitmap[2])/255, alpha: 0.1)
             return result
         }
         return UIColor.white
     }
     
-    func setNavigationTitle(isSet : Bool){
-        if isSet == true{
-                self.title = self.cryptoCurrency?.name
-        }else {
-                self.title = ""
+    func setTextForCurrencyDetailLabel(currencyNameFont : CGFloat, lastUpdatedFont:CGFloat){
+        if let currency = self.cryptoCurrency, let currencyName = currency.name{
+            let lastUpdated = "last updated \(GenericFunctions.getTimeDifferenceFromNow(time: currency.lastUpdated!))"
+            let attributedText = NSMutableAttributedString.init(string: "\(currencyName)\n\(lastUpdated)")
+            attributedText.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: currencyNameFont, weight: UIFont.Weight.bold), range: NSRange.init(location: 0, length: currencyName.count))
+            attributedText.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: lastUpdatedFont, weight: UIFont.Weight.light), range: NSRange.init(location: currencyName.count+1, length: lastUpdated.count))
+            self.currencyDetailLabel.attributedText = attributedText
         }
+        
     }
     
     func dataForIndexPath(indexPath : IndexPath) -> NSMutableAttributedString{
@@ -64,31 +82,31 @@ class CurrencyDetailViewController: UIViewController {
         var dataString = ""
         if let currency = self.cryptoCurrency{
             switch indexPath.row {
+//            case 0:
+//                dataString = currency.name!
+//                data.setAttributedString(NSAttributedString.init(string: dataString))
+//                break
             case 0:
-                dataString = currency.name!
-                data.setAttributedString(NSAttributedString.init(string: dataString))
-                break
-            case 1:
                 dataString = "Symbol : \(currency.symbol!)"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
                 data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))
                 break
-            case 2:
+            case 1:
                 dataString = "Rank : \(currency.rank!)"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
                 data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))
                 break
-            case 3:
+            case 2:
                 dataString = "Price : \(currency.priceUsd!)"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
                 data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))
                 break
-            case 4:
+            case 3:
                 dataString = "Price(BTC) : \(currency.priceBTC!)"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
                 data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))
                 break
-            case 5:
+            case 4:
                 let lastHrPriceChange = currency.percentChangedLast1Hr!
                 dataString = "Last hour change : \(lastHrPriceChange)%"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
@@ -99,7 +117,7 @@ class CurrencyDetailViewController: UIViewController {
                     data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 84/255, green: 167/255, blue: 65/255, alpha: 1.0), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))//Green color
                 }
                 break
-            case 6:
+            case 5:
                 let lastDayPriceChange = currency.percentChangedLast24Hr!
                 dataString = "Last day change : \(lastDayPriceChange)%"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
@@ -110,7 +128,7 @@ class CurrencyDetailViewController: UIViewController {
                     data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 84/255, green: 167/255, blue: 65/255, alpha: 1.0), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))//Green color
                 }
                 break
-            case 7:
+            case 6:
                 let lastWeekPriceChange = currency.percentChangedLast7Days!
                 dataString = "Last week change : \(lastWeekPriceChange)%"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
@@ -121,12 +139,12 @@ class CurrencyDetailViewController: UIViewController {
                     data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 84/255, green: 167/255, blue: 65/255, alpha: 1.0), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))//Green color
                 }
                 break
-            case 8:
+            case 7:
                 dataString = "Supply : \(currency.totalSupply!)"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
                 data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))
                 break
-            case 9:
+            case 8:
                 dataString = "Volume(24 hours) : \(currency.volumeUsedLast24HrUSD!)"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
                 data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))
@@ -149,19 +167,11 @@ class CurrencyDetailViewController: UIViewController {
 extension CurrencyDetailViewController : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 9
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height = 30.0
-        switch indexPath.row {
-        case 0:
-            height = 70
-            break
-        default:
-            break
-        }
-        return CGFloat(height)
+        return 30.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -172,19 +182,10 @@ extension CurrencyDetailViewController : UITableViewDelegate,UITableViewDataSour
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let firstTableCell = self.cryptoCurrencyDetailTableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? CurrencyDetailTableViewCell{
-            let detailAttributedText = NSMutableAttributedString.init(string: cryptoCurrency!.name!)
-            if scrollView.contentOffset.y > -20{
-                setNavigationTitle(isSet: true)
-            }else if scrollView.contentOffset.y < -64{
-                detailAttributedText.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: (40+(15*(log(-scrollView.contentOffset.y)-log(64)))), weight: UIFont.Weight.bold), range: NSRange.init(location: 0, length: cryptoCurrency!.name!.count))
-                firstTableCell.detailLabel.attributedText = detailAttributedText
-                setNavigationTitle(isSet: false)
-            }else{
-                detailAttributedText.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 40, weight: UIFont.Weight.bold), range: NSRange.init(location: 0, length: cryptoCurrency!.name!.count))
-                firstTableCell.detailLabel.attributedText = detailAttributedText
-                setNavigationTitle(isSet: false)
-            }
+        if scrollView.contentOffset.y < -24{
+            self.setTextForCurrencyDetailLabel(currencyNameFont: (25+(7*(log(-scrollView.contentOffset.y)-log(24)))), lastUpdatedFont: (12+(3*(log(-scrollView.contentOffset.y)-log(24)))))
+        }else{
+            self.setTextForCurrencyDetailLabel(currencyNameFont: 25, lastUpdatedFont: 12)
         }
     }
 }
