@@ -10,6 +10,7 @@ import UIKit
 
 class CurrencyDetailViewController: UIViewController {
     
+    @IBOutlet weak var firstLetterLabel: UILabel!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var currencyDetailLabel: UILabel!
     @IBOutlet weak var backGroundImageView: UIImageView!
@@ -30,11 +31,13 @@ class CurrencyDetailViewController: UIViewController {
         self.cryptoCurrencyDetailTableView.register(UINib.init(nibName: "CurrencyDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyDetailTableViewCell")
         self.cryptoCurrencyDetailTableView.separatorStyle = .none
         self.currencyDetailLabel.numberOfLines = 0
-        self.backGroundImageView.backgroundColor = getAverageColorValueForCurrency()
+        if let bgColor = getAverageColorValueForCurrency(){
+            backGroundImageView.backgroundColor = bgColor
+        }
         self.view.backgroundColor = UIColor.white
         self.cryptoCurrencyDetailTableView.backgroundColor = UIColor.clear
         self.navigationController?.navigationBar.isHidden = true
-        self.setTextForCurrencyDetailLabel(currencyNameFont: 35, lastUpdatedFont: 12)
+        self.setTextForCurrencyDetailLabel(currencyNameFont: 30, lastUpdatedFont: 12)
         self.currencyImageView.layer.shadowColor = UIColor.black.cgColor
         self.currencyImageView.layer.shadowRadius = CGFloat(5.0)
         self.currencyImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
@@ -42,7 +45,7 @@ class CurrencyDetailViewController: UIViewController {
         self.currencyImageView.clipsToBounds = false
     }
     
-    func getAverageColorValueForCurrency() -> UIColor{
+    func getAverageColorValueForCurrency() -> UIColor?{
         if let currencyImage = UIImage.init(named: cryptoCurrency!.name!){
             currencyImageView.image = currencyImage
             var bitmap = [UInt8](repeating : 0,count : 4)
@@ -62,6 +65,13 @@ class CurrencyDetailViewController: UIViewController {
             let result = UIColor.init(red: 1.0-CGFloat(bitmap[0])/255, green: 1.0-CGFloat(bitmap[1])/255, blue: 1.0-CGFloat(bitmap[2])/255, alpha: 0.6)
             self.backgroundView.backgroundColor =  UIColor.init(red:CGFloat(bitmap[0])/255, green:CGFloat(bitmap[1])/255, blue:CGFloat(bitmap[2])/255, alpha: 0.1)
             return result
+        }else{
+            firstLetterLabel.text = String(describing: self.cryptoCurrency!.name!.first!)
+            firstLetterLabel.font = UIFont.systemFont(ofSize: 60, weight: UIFont.Weight.bold)
+            self.currencyImageView.backgroundColor = UIColor.lightGray
+            self.backGroundImageView.backgroundColor = UIColor.init(red: 150/255, green: 150/255, blue: 200/255, alpha: 0.2)
+            self.backgroundView.backgroundColor = UIColor.init(red: 200/255, green: 200/255, blue: 200/255, alpha: 0.2)
+            self.currencyImageView.layer.shadowRadius = CGFloat(3.0)
         }
         return UIColor.white
     }
@@ -183,9 +193,9 @@ extension CurrencyDetailViewController : UITableViewDelegate,UITableViewDataSour
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -24{
-            self.setTextForCurrencyDetailLabel(currencyNameFont: (35+(7*(log(-scrollView.contentOffset.y)-log(24)))), lastUpdatedFont: (12+(3*(log(-scrollView.contentOffset.y)-log(24)))))
+            self.setTextForCurrencyDetailLabel(currencyNameFont: (30+(7*(log(-scrollView.contentOffset.y)-log(24)))), lastUpdatedFont: (12+(3*(log(-scrollView.contentOffset.y)-log(24)))))
         }else{
-            self.setTextForCurrencyDetailLabel(currencyNameFont: 35, lastUpdatedFont: 12)
+            self.setTextForCurrencyDetailLabel(currencyNameFont: 30, lastUpdatedFont: 12)
         }
     }
 }

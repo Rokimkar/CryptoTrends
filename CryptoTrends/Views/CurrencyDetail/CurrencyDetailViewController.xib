@@ -16,6 +16,7 @@
                 <outlet property="cryptoCurrencyDetailTableView" destination="u7h-I5-tEZ" id="XEM-CO-28K"/>
                 <outlet property="currencyDetailLabel" destination="Tn0-rt-bF3" id="x5F-d3-SzA"/>
                 <outlet property="currencyImageView" destination="3WX-t4-iB4" id="Ms3-ls-Dya"/>
+                <outlet property="firstLetterLabel" destination="YIE-7M-53Z" id="E6W-sC-HPD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -50,14 +51,26 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIE-7M-53Z">
+                            <rect key="frame" x="40" y="108" width="50" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="Zyr-8K-IuG"/>
+                                <constraint firstAttribute="height" constant="60" id="nuk-HJ-tVh"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Tn0-rt-bF3" secondAttribute="trailing" constant="17" id="6Hy-vT-mIM"/>
                         <constraint firstItem="Tn0-rt-bF3" firstAttribute="centerY" secondItem="3WX-t4-iB4" secondAttribute="centerY" constant="-10" id="72X-tv-pWJ"/>
                         <constraint firstItem="3WX-t4-iB4" firstAttribute="leading" secondItem="AKK-KP-nuy" secondAttribute="leading" constant="15" id="7qb-5f-YOH"/>
+                        <constraint firstItem="YIE-7M-53Z" firstAttribute="centerX" secondItem="3WX-t4-iB4" secondAttribute="centerX" id="D7S-Oi-yZv"/>
                         <constraint firstAttribute="trailing" secondItem="dQz-Jr-CFu" secondAttribute="trailing" id="Dit-jj-rmg"/>
                         <constraint firstItem="3WX-t4-iB4" firstAttribute="top" secondItem="AKK-KP-nuy" secondAttribute="top" constant="88" id="FfZ-E5-OhU"/>
+                        <constraint firstItem="YIE-7M-53Z" firstAttribute="centerY" secondItem="3WX-t4-iB4" secondAttribute="centerY" id="K6c-JP-paQ"/>
                         <constraint firstItem="dQz-Jr-CFu" firstAttribute="leading" secondItem="AKK-KP-nuy" secondAttribute="leading" id="OOA-Pb-iLS"/>
                         <constraint firstItem="dQz-Jr-CFu" firstAttribute="top" secondItem="AKK-KP-nuy" secondAttribute="top" id="WKN-Gn-CXi"/>
                         <constraint firstItem="Tn0-rt-bF3" firstAttribute="leading" secondItem="3WX-t4-iB4" secondAttribute="trailing" constant="8" id="fCm-HH-UXf"/>
