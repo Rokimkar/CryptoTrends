@@ -6,5 +6,6 @@ use_frameworks!
 target 'CryptoTrends' do
   pod 'Alamofire'
   pod 'Disk'
+  pod 'Firebase/AdMob'
 # Pods for CryptoTrends
 end

@@ -18,27 +18,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xcp-fz-xVV">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="129" width="375" height="538"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roI-ad-E6S">
+                                <rect key="frame" x="0.0" y="64" width="375" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="kyH-5T-mAZ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xcp-fz-xVV" firstAttribute="trailing" secondItem="zUc-Yd-ZnB" secondAttribute="trailing" id="7xM-Le-nHy"/>
-                            <constraint firstItem="xcp-fz-xVV" firstAttribute="top" secondItem="zUc-Yd-ZnB" secondAttribute="top" id="CY1-Ju-fkj"/>
-                            <constraint firstItem="xcp-fz-xVV" firstAttribute="bottom" secondItem="zUc-Yd-ZnB" secondAttribute="bottom" id="MQW-jh-PsH"/>
-                            <constraint firstItem="xcp-fz-xVV" firstAttribute="leading" secondItem="zUc-Yd-ZnB" secondAttribute="leading" id="wcH-8h-cOb"/>
+                            <constraint firstItem="roI-ad-E6S" firstAttribute="top" secondItem="zUc-Yd-ZnB" secondAttribute="top" id="6EI-jP-O5w"/>
+                            <constraint firstItem="roI-ad-E6S" firstAttribute="leading" secondItem="zUc-Yd-ZnB" secondAttribute="leading" id="A5G-zK-tqn"/>
+                            <constraint firstItem="xcp-fz-xVV" firstAttribute="bottom" secondItem="zUc-Yd-ZnB" secondAttribute="bottom" id="R7Q-70-JXC"/>
+                            <constraint firstItem="xcp-fz-xVV" firstAttribute="leading" secondItem="zUc-Yd-ZnB" secondAttribute="leading" id="RZB-eh-Lv2"/>
+                            <constraint firstItem="xcp-fz-xVV" firstAttribute="trailing" secondItem="zUc-Yd-ZnB" secondAttribute="trailing" id="hBF-JR-SXf"/>
+                            <constraint firstItem="xcp-fz-xVV" firstAttribute="top" secondItem="roI-ad-E6S" secondAttribute="bottom" constant="1" id="jK3-6z-tAc"/>
+                            <constraint firstItem="roI-ad-E6S" firstAttribute="trailing" secondItem="zUc-Yd-ZnB" secondAttribute="trailing" id="jk9-9C-wGK"/>
+                            <constraint firstItem="xcp-fz-xVV" firstAttribute="top" secondItem="roI-ad-E6S" secondAttribute="bottom" constant="1" id="pZi-ck-tpE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zUc-Yd-ZnB"/>
                     </view>
                     <navigationItem key="navigationItem" id="48E-3d-j4X"/>
                     <connections>
+                        <outlet property="adView" destination="roI-ad-E6S" id="Sx6-2z-mK4"/>
                         <outlet property="currencyTableView" destination="xcp-fz-xVV" id="DPs-Nw-1vf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z7S-j0-HzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756" y="86"/>
+            <point key="canvasLocation" x="756" y="85.907046476761622"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nqO-Sy-kLy">

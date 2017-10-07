@@ -25,6 +25,7 @@
 		9EC069411F8287990073DB52 /* CurrencyDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0693F1F8287990073DB52 /* CurrencyDetailTableViewCell.swift */; };
 		9EC069421F8287990073DB52 /* CurrencyDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC069401F8287990073DB52 /* CurrencyDetailTableViewCell.xib */; };
 		9EC069461F84365C0073DB52 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EC069451F84365C0073DB52 /* LaunchScreen.png */; };
+		9EC0694E1F87909C0073DB52 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0694D1F87909C0073DB52 /* AdManager.swift */; };
 		A6E33320CD122D6AD28B8939 /* Pods_CryptoTrends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA1BF7C2AEB095B557D65C9 /* Pods_CryptoTrends.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		9EC0693F1F8287990073DB52 /* CurrencyDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDetailTableViewCell.swift; sourceTree = "<group>"; };
 		9EC069401F8287990073DB52 /* CurrencyDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyDetailTableViewCell.xib; sourceTree = "<group>"; };
 		9EC069451F84365C0073DB52 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
+		9EC0694D1F87909C0073DB52 /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		CDA1BF7C2AEB095B557D65C9 /* Pods_CryptoTrends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoTrends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -145,6 +147,7 @@
 			children = (
 				9E70D52F1F771913002EC263 /* AppDelegate.swift */,
 				9E24C2BC1F8144AA00ED4691 /* GenericFunctions.swift */,
+				9EC0694D1F87909C0073DB52 /* AdManager.swift */,
 				9E24C2B21F7EDC7C00ED4691 /* Views */,
 				9E30B9A11F79745800DF009D /* DataManager */,
 				9E30B9A41F7988E300DF009D /* Model */,
@@ -312,6 +315,7 @@
 				9E70D5421F77BAA4002EC263 /* DataManager.swift in Sources */,
 				9E70D5301F771913002EC263 /* AppDelegate.swift in Sources */,
 				9E30B9A31F79749500DF009D /* Cache.swift in Sources */,
+				9EC0694E1F87909C0073DB52 /* AdManager.swift in Sources */,
 				9E2B56A11F781D4F00856E29 /* CryptoCurrency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

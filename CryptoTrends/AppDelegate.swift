@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,7 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    // Mark : Supporting functions
 
+    func initialiseGoogleAdMob(){
+        FirebaseApp.configure()
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-6026686664345507~4614220710")
+    }
 
 }
 

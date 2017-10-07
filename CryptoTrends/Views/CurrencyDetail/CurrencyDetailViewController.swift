@@ -39,7 +39,7 @@ class CurrencyDetailViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         self.setTextForCurrencyDetailLabel(currencyNameFont: 30, lastUpdatedFont: 12)
         self.currencyImageView.layer.shadowColor = UIColor.black.cgColor
-        self.currencyImageView.layer.shadowRadius = CGFloat(5.0)
+        self.currencyImageView.layer.shadowRadius = CGFloat(2.0)
         self.currencyImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
         self.currencyImageView.layer.shadowOpacity = 1
         self.currencyImageView.clipsToBounds = false
@@ -107,7 +107,7 @@ class CurrencyDetailViewController: UIViewController {
                 data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))
                 break
             case 2:
-                dataString = "Price : \(currency.priceUsd!)"
+                dataString = "Price : \(GenericFunctions.getFormattedCommaSeperatedNumber(input: currency.priceUsd!))"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
                 data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))
                 break
@@ -150,7 +150,7 @@ class CurrencyDetailViewController: UIViewController {
                 }
                 break
             case 7:
-                dataString = "Supply : \(currency.totalSupply!)"
+                dataString = "Supply : \(GenericFunctions.getFormattedCommaSeperatedNumber(input: currency.totalSupply!))"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
                 data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))
                 break
@@ -193,7 +193,7 @@ extension CurrencyDetailViewController : UITableViewDelegate,UITableViewDataSour
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -24{
-            self.setTextForCurrencyDetailLabel(currencyNameFont: (30+(7*(log(-scrollView.contentOffset.y)-log(24)))), lastUpdatedFont: (12+(3*(log(-scrollView.contentOffset.y)-log(24)))))
+            self.setTextForCurrencyDetailLabel(currencyNameFont: (30+(5*(log(-scrollView.contentOffset.y)-log(24)))), lastUpdatedFont: (12+(3*(log(-scrollView.contentOffset.y)-log(24)))))
         }else{
             self.setTextForCurrencyDetailLabel(currencyNameFont: 30, lastUpdatedFont: 12)
         }

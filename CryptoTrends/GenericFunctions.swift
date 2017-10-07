@@ -37,4 +37,17 @@ class GenericFunctions: NSObject {
         }
         return timeDifferceString
     }
+    
+    class func getFormattedCommaSeperatedNumber(input : String) -> String{
+        let formatter = NumberFormatter.init()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0
+        let number = Float(input)
+        var result = input
+        if result.first != "0"{
+            result = formatter.string(from: NSNumber.init(value: number!))!
+        }
+        return result
+        
+    }
 }
