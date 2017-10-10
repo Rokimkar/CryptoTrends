@@ -9,6 +9,8 @@
 import UIKit
 
 class GenericFunctions: NSObject {
+    static let kOneDay = 3600
+    
     class func suffixNumber (inputNumber : Any) -> String {
         var number = 0.0
         if inputNumber is String{
@@ -31,7 +33,7 @@ class GenericFunctions: NSObject {
         if timeDiffernce < 60{
             timeDifferceString = "\(timeDiffernce) seconds ago"
         }else if timeDiffernce/3600 >= 1{
-            timeDifferceString = "\(timeDiffernce/3600) hours ago"
+            timeDifferceString = "\(timeDiffernce/GenericFunctions.kOneDay) hours ago"
         }else{
             timeDifferceString = "\(timeDiffernce/60) minutes ago"
         }

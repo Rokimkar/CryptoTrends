@@ -17,11 +17,12 @@ class CurrencyDetailViewController: UIViewController {
     @IBOutlet weak var currencyImageView: UIImageView!
     @IBOutlet weak var cryptoCurrencyDetailTableView: UITableView!
     
-    var cryptoCurrency : CryptoCurrency?
+    var previousFetchedCryptoCurrency : CryptoCurrency?
+    var freshFetchedCurrency : CryptoCurrency?
     override func viewDidLoad() {
         super.viewDidLoad()
         commoninit()
-        self.title = cryptoCurrency?.name
+        self.title = previousFetchedCryptoCurrency?.name
         // Do any additional setup after loading the view.
     }
     
@@ -46,7 +47,7 @@ class CurrencyDetailViewController: UIViewController {
     }
     
     func getAverageColorValueForCurrency() -> UIColor?{
-        if let currencyImage = UIImage.init(named: cryptoCurrency!.name!){
+        if let currencyImage = UIImage.init(named: previousFetchedCryptoCurrency!.name!){
             currencyImageView.image = currencyImage
             var bitmap = [UInt8](repeating : 0,count : 4)
             let context = CIContext(options : nil)
@@ -66,7 +67,7 @@ class CurrencyDetailViewController: UIViewController {
             self.backgroundView.backgroundColor =  UIColor.init(red:CGFloat(bitmap[0])/255, green:CGFloat(bitmap[1])/255, blue:CGFloat(bitmap[2])/255, alpha: 0.1)
             return result
         }else{
-            firstLetterLabel.text = String(describing: self.cryptoCurrency!.name!.first!)
+            firstLetterLabel.text = String(describing: self.previousFetchedCryptoCurrency!.name!.first!)
             firstLetterLabel.font = UIFont.systemFont(ofSize: 60, weight: UIFont.Weight.bold)
             self.currencyImageView.backgroundColor = UIColor.lightGray
             self.backGroundImageView.backgroundColor = UIColor.init(red: 150/255, green: 150/255, blue: 200/255, alpha: 0.2)
@@ -77,7 +78,7 @@ class CurrencyDetailViewController: UIViewController {
     }
     
     func setTextForCurrencyDetailLabel(currencyNameFont : CGFloat, lastUpdatedFont:CGFloat){
-        if let currency = self.cryptoCurrency, let currencyName = currency.name{
+        if let currency = self.previousFetchedCryptoCurrency, let currencyName = currency.name{
             let lastUpdated = "last updated \(GenericFunctions.getTimeDifferenceFromNow(time: currency.lastUpdated!))"
             let attributedText = NSMutableAttributedString.init(string: "\(currencyName)\n\(lastUpdated)")
             attributedText.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: currencyNameFont, weight: UIFont.Weight.bold), range: NSRange.init(location: 0, length: currencyName.count))
@@ -90,7 +91,7 @@ class CurrencyDetailViewController: UIViewController {
     func dataForIndexPath(indexPath : IndexPath) -> NSMutableAttributedString{
         let data = NSMutableAttributedString.init()
         var dataString = ""
-        if let currency = self.cryptoCurrency{
+        if let currency = self.previousFetchedCryptoCurrency{
             switch indexPath.row {
 //            case 0:
 //                dataString = currency.name!
@@ -166,7 +167,7 @@ class CurrencyDetailViewController: UIViewController {
         data.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.medium), range: NSRange.init(location: 0, length: dataString.count))
         return data
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

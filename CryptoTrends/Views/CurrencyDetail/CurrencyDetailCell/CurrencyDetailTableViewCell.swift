@@ -24,7 +24,17 @@ class CurrencyDetailTableViewCell: UITableViewCell {
     }
     
     func bindData(indexpath : IndexPath,data : NSMutableAttributedString){
-        detailLabel.attributedText = data
+        animateTextInLabelWithText(text: data)
+    }
+    
+    func animateTextInLabelWithText(text : NSAttributedString){
+        let transition = CATransition.init()
+        transition.duration = 0.75
+        transition.type = kCATransitionMoveIn
+        transition.subtype = kCATransitionFromBottom
+        transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
+        self.detailLabel.layer.add(transition, forKey: "changeTextTransition")
+        detailLabel.attributedText = text
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

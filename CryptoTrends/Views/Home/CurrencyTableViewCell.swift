@@ -16,6 +16,7 @@ class CurrencyTableViewCell: UITableViewCell {
     @IBOutlet weak var overlappinglabel: UILabel!
     @IBOutlet weak var cellBackgroundView: UIView!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         commonInit()
