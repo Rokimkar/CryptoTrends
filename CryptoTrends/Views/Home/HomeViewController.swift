@@ -11,6 +11,7 @@ import GoogleMobileAds
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var heightConstraintForAdView: NSLayoutConstraint!
     @IBOutlet weak var adView: UIView!
     var dataArray : [CryptoCurrency] = []
     var bannerView : GADBannerView!
@@ -38,18 +39,23 @@ class HomeViewController: UIViewController {
         self.adView.backgroundColor = UIColor.clear
         setUpNavigationBar()
     }
+
     
     func showAds(){
-        bannerView = GADBannerView(adSize: GADAdSizeFullWidthPortraitWithHeight(adView.frame.height))
+        bannerView = GADBannerView(adSize: GADAdSizeFullWidthPortraitWithHeight(100))
         bannerView.adUnitID = "ca-app-pub-3940256099942544/6300978111"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
-        bannerView.sizeToFit()
+        heightConstraintForAdView.constant = bannerView.frame.size.height
         self.adView.addSubview(bannerView)
+        bannerView.clipsToBounds = true
     }
     
     func removeAds(){
+//        heightConstraintForAdView.constant = 30
+//        adView.backgroundColor = UIColor.green
+//        bannerView.removeFromSuperview()
         //Remove ads functionality to be added here.
     }
     

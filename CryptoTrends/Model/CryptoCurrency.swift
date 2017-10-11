@@ -40,4 +40,5 @@ class CryptoCurrency: Codable {
         case percentChangedLast7Days = "percent_change_7d"
         case lastUpdated = "last_updated"
     }
+    
 }

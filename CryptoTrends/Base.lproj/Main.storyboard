@@ -45,8 +45,8 @@
                     <navigationItem key="navigationItem" id="48E-3d-j4X"/>
                     <connections>
                         <outlet property="adView" destination="roI-ad-E6S" id="Sx6-2z-mK4"/>
-                        <outlet property="adViewHeightConstraint" destination="kyH-5T-mAZ" id="iDe-jq-IZ5"/>
                         <outlet property="currencyTableView" destination="xcp-fz-xVV" id="DPs-Nw-1vf"/>
+                        <outlet property="heightConstraintForAdView" destination="kyH-5T-mAZ" id="577-lY-B5C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z7S-j0-HzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
