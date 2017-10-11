@@ -40,12 +40,17 @@ class HomeViewController: UIViewController {
     }
     
     func showAds(){
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView = GADBannerView(adSize: GADAdSizeFullWidthPortraitWithHeight(adView.frame.height))
         bannerView.adUnitID = "ca-app-pub-3940256099942544/6300978111"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
-        self.currencyTableView.addSubview(bannerView)
+        bannerView.sizeToFit()
+        self.adView.addSubview(bannerView)
+    }
+    
+    func removeAds(){
+        //Remove ads functionality to be added here.
     }
     
     func setUpNavigationBar(){
@@ -64,7 +69,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController : GADBannerViewDelegate{
     /// Tells the delegate an ad request loaded an ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        self.adView.addSubview(bannerView)
+        removeAds()
         print("adViewDidReceiveAd")
     }
     
