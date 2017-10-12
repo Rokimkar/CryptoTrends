@@ -156,7 +156,7 @@ class CurrencyDetailViewController: UIViewController {
                 data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))
                 break
             case 8:
-                dataString = "Volume(24 hours) : \(currency.volumeUsedLast24HrUSD!)"
+                dataString = "Volume(24 hours) : \(GenericFunctions.getFormattedCommaSeperatedNumber(input: currency.volumeUsedLast24HrUSD!))"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
                 data.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: String(dataString.prefix(upTo: dataString.index(of: ":")!)).count, length: String(dataString.suffix(from: dataString.index(of: ":")!)).count))
                 break
