@@ -19,11 +19,19 @@ class CurrencyDetailViewController: UIViewController {
     
     var previousFetchedCryptoCurrency : CryptoCurrency?
     var freshFetchedCurrency : CryptoCurrency?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         commoninit()
-        self.title = previousFetchedCryptoCurrency?.name
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     
     func commoninit(){
@@ -37,13 +45,29 @@ class CurrencyDetailViewController: UIViewController {
         }
         self.view.backgroundColor = UIColor.white
         self.cryptoCurrencyDetailTableView.backgroundColor = UIColor.clear
-        self.navigationController?.navigationBar.isHidden = true
+        setUpNavigation()
         self.setTextForCurrencyDetailLabel(currencyNameFont: 30, lastUpdatedFont: 12)
         self.currencyImageView.layer.shadowColor = UIColor.black.cgColor
         self.currencyImageView.layer.shadowRadius = CGFloat(2.0)
         self.currencyImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
         self.currencyImageView.layer.shadowOpacity = 1
         self.currencyImageView.clipsToBounds = false
+    }
+    
+    func setUpNavigation(){
+        let backButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 60, height: 60))
+        backButton.imageEdgeInsets = UIEdgeInsetsMake(0, -60, 0, 0)
+        backButton.setImage(UIImage.init(named: "Back"), for: UIControlState.normal)
+        backButton.addTarget(self, action: #selector(self.back), for:UIControlEvents.touchUpInside)
+        let backNavigationItem = UIBarButtonItem.init(customView: backButton)
+        self.navigationItem.leftBarButtonItem = backNavigationItem
+        
+        // Transparent Navigation Bar
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
     }
     
     func getAverageColorValueForCurrency() -> UIColor?{
@@ -62,7 +86,7 @@ class CurrencyDetailViewController: UIViewController {
             // Render to bitmap.
             context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: kCIFormatRGBA8, colorSpace: CGColorSpaceCreateDeviceRGB())
             
-            // Compute result.
+            // Compute and implement result.
             let result = UIColor.init(red: 1.0-CGFloat(bitmap[0])/255, green: 1.0-CGFloat(bitmap[1])/255, blue: 1.0-CGFloat(bitmap[2])/255, alpha: 0.6)
             self.backgroundView.backgroundColor =  UIColor.init(red:CGFloat(bitmap[0])/255, green:CGFloat(bitmap[1])/255, blue:CGFloat(bitmap[2])/255, alpha: 0.1)
             return result
@@ -93,10 +117,6 @@ class CurrencyDetailViewController: UIViewController {
         var dataString = ""
         if let currency = self.previousFetchedCryptoCurrency{
             switch indexPath.row {
-//            case 0:
-//                dataString = currency.name!
-//                data.setAttributedString(NSAttributedString.init(string: dataString))
-//                break
             case 0:
                 dataString = "Symbol : \(currency.symbol!)"
                 data.setAttributedString(NSAttributedString.init(string: dataString))
@@ -166,6 +186,10 @@ class CurrencyDetailViewController: UIViewController {
         }
         data.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.medium), range: NSRange.init(location: 0, length: dataString.count))
         return data
+    }
+    
+    @objc func back(){
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
