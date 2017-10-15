@@ -9,17 +9,21 @@
 import UIKit
 
 public enum currencyCode : String {
-    case INR = "inr"
-    case USD = "usd"
+    case INR = "INR"
+    case USD = "USD"
 }
 
 class SettingsManager: NSObject {
     
     static let sharedInstance = SettingsManager()
-    fileprivate var selectedCurrency = currencyCode.USD
+    fileprivate var selectedCurrency = currencyCode.INR
     
     func getSelectedCurrency() -> currencyCode{
         return selectedCurrency
+    }
+    
+    func updateSelectedCurrency(updatedCurrency : currencyCode){
+        selectedCurrency = updatedCurrency
     }
     
 }

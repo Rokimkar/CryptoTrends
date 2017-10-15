@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
-        DataManager.sharedInstance.getDataForAppendingParameters(parameters: []) { (data) in
+        DataManager.sharedInstance.getDataForAppendingParameters(parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"]) { (data) in
             self.dataArray = data
             self.currencyTableView.reloadData()
         }
@@ -58,10 +58,8 @@ class HomeViewController: UIViewController {
     }
     
     func removeAds(){
-//        heightConstraintForAdView.constant = 30
-//        adView.backgroundColor = UIColor.green
-//        bannerView.removeFromSuperview()
-        //Remove ads functionality to be added here.
+        heightConstraintForAdView.constant = 0
+        bannerView.removeFromSuperview()
     }
     
     func setUpNavigationBar(){
@@ -81,13 +79,14 @@ class HomeViewController: UIViewController {
 extension HomeViewController : GADBannerViewDelegate{
     /// Tells the delegate an ad request loaded an ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        removeAds()
+        
         print("adViewDidReceiveAd")
     }
     
     /// Tells the delegate an ad request failed.
     func adView(_ bannerView: GADBannerView,
                 didFailToReceiveAdWithError error: GADRequestError) {
+        removeAds()
         print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
     }
     

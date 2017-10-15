@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class CurrencyDetailViewController: UIViewController {
     
+    @IBOutlet weak var adView: UIView!
     @IBOutlet weak var firstLetterLabel: UILabel!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var currencyDetailLabel: UILabel!
@@ -19,10 +21,17 @@ class CurrencyDetailViewController: UIViewController {
     
     var previousFetchedCryptoCurrency : CryptoCurrency?
     var freshFetchedCurrency : CryptoCurrency?
+    var bannerView : GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         commoninit()
+        showAds()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        animateCurrencyImageView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,6 +61,27 @@ class CurrencyDetailViewController: UIViewController {
         self.currencyImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
         self.currencyImageView.layer.shadowOpacity = 1
         self.currencyImageView.clipsToBounds = false
+    }
+    
+    func animateCurrencyImageView(){
+//        self.currencyImageView.center = CGPoint.init(x: self.currencyImageView.center.x, y: self.currencyImageView.center.y-35)
+//        UIView.animate(withDuration: 2, delay: 0.5, usingSpringWithDamping: 0.35, initialSpringVelocity: 0.0, options: [] , animations: {
+//            self.currencyImageView.center = CGPoint.init(x: self.currencyImageView.center.x, y: self.currencyImageView.center.y+35)
+//        }, completion: nil)
+        
+                let rotationAnimation = CABasicAnimation.init(keyPath: "transform.rotation.z")
+                rotationAnimation.toValue = 3.14
+                rotationAnimation.duration = CFTimeInterval.init(0.5)
+                rotationAnimation.isCumulative = true
+                rotationAnimation.repeatCount = 2
+                self.currencyImageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
+        
+        //        let yrotationAnimation = CABasicAnimation.init(keyPath: "transform.rotation.y")
+        //        yrotationAnimation.toValue = 3.14
+        //        yrotationAnimation.duration = CFTimeInterval.init(0.5)
+        //        yrotationAnimation.isCumulative = true
+        //        yrotationAnimation.repeatCount = 5
+        //        self.currencyImageView.layer.add(yrotationAnimation, forKey: "yrotationAnimation")
     }
     
     func setUpNavigation(){
@@ -99,6 +129,16 @@ class CurrencyDetailViewController: UIViewController {
             self.currencyImageView.layer.shadowRadius = CGFloat(3.0)
         }
         return UIColor.white
+    }
+    
+    func showAds(){
+        bannerView = GADBannerView(adSize: GADAdSizeFullWidthPortraitWithHeight(50))
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/6300978111"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+        self.adView.addSubview(bannerView)
+        bannerView.clipsToBounds = true
     }
     
     func setTextForCurrencyDetailLabel(currencyNameFont : CGFloat, lastUpdatedFont:CGFloat){
@@ -197,6 +237,41 @@ class CurrencyDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+extension CurrencyDetailViewController : GADBannerViewDelegate{
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        //removeAds()
+        print("adViewDidReceiveAd")
+    }
+    
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView,
+                didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    /// Tells the delegate that a full screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+    
+    /// Tells the delegate that the full screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+    
+    /// Tells the delegate that the full screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+    
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
+    }
 }
 
 extension CurrencyDetailViewController : UITableViewDelegate,UITableViewDataSource{

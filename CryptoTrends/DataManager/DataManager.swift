@@ -56,6 +56,18 @@ class DataManager: NSObject {
                 }
             }
         }
+        
+            .responseJSON { (response) in
+                if let data = response.result.value{
+                    self.prepareDataForSerialization(data: data)
+                    print(data)
+                }
+        }
 
     }
+    
+    private func prepareDataForSerialization(data: Any){
+        
+    }
+
 }
