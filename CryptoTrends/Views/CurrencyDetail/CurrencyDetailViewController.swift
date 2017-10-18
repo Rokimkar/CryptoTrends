@@ -70,8 +70,8 @@ class CurrencyDetailViewController: UIViewController {
 //        }, completion: nil)
         
                 let rotationAnimation = CABasicAnimation.init(keyPath: "transform.rotation.z")
-                rotationAnimation.toValue = 3.14
-                rotationAnimation.duration = CFTimeInterval.init(0.5)
+                rotationAnimation.toValue = 3.14159 // pi rotation
+                rotationAnimation.duration = CFTimeInterval.init(0.35)
                 rotationAnimation.isCumulative = true
                 rotationAnimation.repeatCount = 2
                 self.currencyImageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
