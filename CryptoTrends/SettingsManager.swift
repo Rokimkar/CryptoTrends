@@ -16,6 +16,7 @@ public enum currencyCode : String {
 class SettingsManager: NSObject {
     
     static let sharedInstance = SettingsManager()
+    var countryCurrencySymbols : CountryCurrencySymbols? = nil
     fileprivate var selectedCurrency = currencyCode.INR
     
     func getSelectedCurrency() -> currencyCode{
@@ -24,6 +25,21 @@ class SettingsManager: NSObject {
     
     func updateSelectedCurrency(updatedCurrency : currencyCode){
         selectedCurrency = updatedCurrency
+    }
+    
+    func getCountryCurrency(){
+        DataManager.sharedInstance.getDataForUrl(url: "https://api.fixer.io/latest", completionHandler: {(data) in
+            let decoder = JSONDecoder()
+            do {
+                    let mappedData = try decoder.decode(CountryCurrencySymbols.self, from: data)
+                    print(mappedData)
+//                    CacheHelper.saveCacheData(urlStr: (URL.init(string: urlString)?.pathComponents.last)!, data: mappedData)
+//                    success(mappedData)
+                }catch{
+                    print(error)
+                    //failure(NSError.init(domain: "Decoding Error", code: 0, userInfo: nil))
+                }
+        })
     }
     
 }

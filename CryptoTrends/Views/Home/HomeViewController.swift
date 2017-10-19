@@ -47,6 +47,7 @@ class HomeViewController: UIViewController {
 
     
     func showAds(){
+        SettingsManager.sharedInstance.getCountryCurrency()
         bannerView = GADBannerView(adSize: GADAdSizeFullWidthPortraitWithHeight(100))
         bannerView.adUnitID = "ca-app-pub-3940256099942544/6300978111"
         bannerView.rootViewController = self

@@ -29,6 +29,16 @@ class DataManager: NSObject {
             completionHandler(cryptoCurrencyData)
         }
     }
+
+    func getDataForUrl(url: String,completionHandler : @escaping (_ data : Data) -> Void){
+        Alamofire.request(URL.init(string: url)!).responseData { (response) in
+            if let data = response.result.value{
+                completionHandler(data)
+            }else {
+                completionHandler(Data.init())
+            }
+        }
+    }
     
     fileprivate func getCurrencyDataForUrl(url:String,completionHandler  :@escaping (_ data:[CryptoCurrency]) -> Void){
         CacheHelper.getCacheData(url: (URL.init(string: url)?.pathComponents.last)!, success: { (data) in
