@@ -75,9 +75,7 @@ class DataManager: NSObject {
         }
 
     }
-    
-    
-    
+
     private func prepareDataForSerialization(data: Any){
         
     }
