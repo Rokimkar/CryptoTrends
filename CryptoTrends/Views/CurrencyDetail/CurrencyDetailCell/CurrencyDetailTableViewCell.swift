@@ -24,7 +24,8 @@ class CurrencyDetailTableViewCell: UITableViewCell {
     }
     
     func bindData(indexpath : IndexPath,data : NSMutableAttributedString){
-        animateTextInLabelWithText(text: data)
+        detailLabel.attributedText = data
+        //animateTextInLabelWithText(text: data)
     }
     
     func animateTextInLabelWithText(text : NSAttributedString){

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum currencyCode : String {
+public enum CurrencyCode : String {
     case AUD = "AUD"
     case BGN = "BGN"
     case BRL = "BRL"
@@ -44,15 +44,26 @@ public enum currencyCode : String {
 
 class SettingsManager: NSObject {
     
-    static let sharedInstance = SettingsManager()
+    //static let sharedInstance = SettingsManager()
+    class var sharedInstance : SettingsManager{
+        struct Static {
+            static let instance = SettingsManager()
+        }
+        Static.instance.getCountryCurrency(completionhandler: { (isFetched) in
+            
+        })
+        return Static.instance
+    }
     var countryCurrencySymbols : CountryCurrencySymbols? = nil
-    fileprivate var selectedCurrency = currencyCode.INR
+    fileprivate var selectedCurrency = CurrencyCode.INR
+    static let currencyVisualSymbolsList = ["AUD":"A$","BGN":"BGN","BRL":"R$","CAD":"$","CHF":"CHF","CNY":"¥","CZK":"Kč","DKK":"kr","GBP":"£","HKD":"$","HRK":"kn","HUF":"Ft","IDR":"Rp","ILS":"₪","INR":"₹","JPY":"¥","KRW":"₩","MXN":"$","MYR":"RM","NOK":"kr","NZD":"$","PHP":"₱","PLN":"zł","RON":"lei","RUB":"руб","SEK":"kr","SGD":"S$","THB":"฿","TRY":"TL","USD":"$","ZAR":"R"]
+    static let currencySymbolsArray = ["AUD","BGN","AUD","BGN","BRL","CAD","CHF","CNY","CZK","DKK","GBP","HKD","HRK","HUF","IDR","ILS","INR","JPY","KRW","MXN","MYR","NOK","NZD","PHP","PLN","RON","RUB","SEK","SGD","THB","TRY","USD","ZAR"]
     
-    func getSelectedCurrency() -> currencyCode{
+    func getSelectedCurrency() -> CurrencyCode{
         return selectedCurrency
     }
     
-    func updateSelectedCurrency(updatedCurrency : currencyCode,completionHandler:@escaping (_ isUpdated:Bool) -> Void){
+    func updateSelectedCurrency(updatedCurrency : CurrencyCode,completionHandler:@escaping (_ isUpdated:Bool) -> Void){
         if countryCurrencySymbols == nil{
             self.getCountryCurrency(completionhandler: { (isFetched) in
                 self.selectedCurrency = updatedCurrency
@@ -77,10 +88,22 @@ class SettingsManager: NSObject {
                     self.countryCurrencySymbols = mappedData
                     completionhandler(true)
                 }catch{
-                    completionhandler(true)
+                    completionhandler(false)
                 }
             })
+        }else{
+            completionhandler(true)
         }
         
+    }
+    
+    func getConvertedCurrencyStringFromUSD(to: CurrencyCode, value : String) -> String{
+        var convertedValue = ""
+        if let symbols = self.countryCurrencySymbols{
+            convertedValue = SettingsManager.currencyVisualSymbolsList[to.rawValue]! + " " + GenericFunctions.getFormattedCommaSeperatedNumber(input: String(Float(value)!*(Float(symbols.rates[to.rawValue]!)/Float(symbols.rates[CurrencyCode.USD.rawValue]!))))
+        }else{
+            convertedValue = "\(SettingsManager.currencyVisualSymbolsList[CurrencyCode.USD.rawValue] ?? String.init("$")) " + GenericFunctions.getFormattedCommaSeperatedNumber(input: value)
+        }
+        return convertedValue
     }
 }

@@ -20,6 +20,9 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
+        SettingsManager.sharedInstance.updateSelectedCurrency(updatedCurrency: CurrencyCode.INR) { (isUpdateded) in
+            //
+        }
         DataManager.sharedInstance.getDataForAppendingParameters(parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"]) { (data) in
             self.dataArray = data
             self.currencyTableView.reloadData()
@@ -30,6 +33,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.currencyTableView.reloadData()
         setUpNavigationBar()
     }
     
@@ -67,6 +71,16 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.bold)]
         self.navigationController?.navigationBar.isTranslucent = false
+        
+        let settingsButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 50, height: 50))
+        settingsButton.setImage(UIImage.init(named: "Settings"), for: .normal)
+        settingsButton.addTarget(self, action: #selector(settingsClicked), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: settingsButton)
+    }
+    
+    @objc func settingsClicked(){
+        let settingsViewController = SettingsViewController.init(nibName: "SettingsViewController", bundle: nil)
+        self.navigationController?.pushViewController(settingsViewController, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
