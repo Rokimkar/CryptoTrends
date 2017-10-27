@@ -13,20 +13,16 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var heightConstraintForAdView: NSLayoutConstraint!
     @IBOutlet weak var adView: UIView!
+    @IBOutlet weak var currencyTableView: UITableView!
+    
     var dataArray : [CryptoCurrency] = []
     var bannerView : GADBannerView!
-    @IBOutlet weak var currencyTableView: UITableView!
+    private let pullToRefreshControl = UIRefreshControl.init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
-        SettingsManager.sharedInstance.updateSelectedCurrency(updatedCurrency: CurrencyCode.INR) { (isUpdateded) in
-            //
-        }
-        DataManager.sharedInstance.getDataForAppendingParameters(parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"]) { (data) in
-            self.dataArray = data
-            self.currencyTableView.reloadData()
-        }
+        getDataAndUpdateTable()
         showAds()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -47,8 +43,24 @@ class HomeViewController: UIViewController {
         self.title = "CryptoTrends"
         self.adView.backgroundColor = UIColor.clear
         setUpNavigationBar()
+        if #available(iOS 10.0, *){
+            currencyTableView.refreshControl = pullToRefreshControl
+        } else {
+            currencyTableView.addSubview(pullToRefreshControl)
+        }
+        pullToRefreshControl.addTarget(self, action: #selector(pullToRefereshed), for: UIControlEvents.valueChanged)
     }
 
+    func getDataAndUpdateTable(){
+//        SettingsManager.sharedInstance.updateSelectedCurrency(updatedCurrency: CurrencyCode.INR) { (isUpdateded) in
+//            //
+//        }
+        DataManager.sharedInstance.getDataForAppendingParameters(parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"]) { (data) in
+            self.dataArray = data
+            self.pullToRefreshControl.endRefreshing()
+            self.currencyTableView.reloadData()
+        }
+    }
     
     func showAds(){
         bannerView = GADBannerView(adSize: GADAdSizeFullWidthPortraitWithHeight(100))
@@ -76,6 +88,10 @@ class HomeViewController: UIViewController {
         settingsButton.setImage(UIImage.init(named: "Settings"), for: .normal)
         settingsButton.addTarget(self, action: #selector(settingsClicked), for: .touchUpInside)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: settingsButton)
+    }
+    
+    @objc func pullToRefereshed(){
+        getDataAndUpdateTable()
     }
     
     @objc func settingsClicked(){
