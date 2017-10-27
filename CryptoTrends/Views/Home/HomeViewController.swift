@@ -49,6 +49,7 @@ class HomeViewController: UIViewController {
             currencyTableView.addSubview(pullToRefreshControl)
         }
         pullToRefreshControl.addTarget(self, action: #selector(pullToRefereshed), for: UIControlEvents.valueChanged)
+        pullToRefreshControl.beginRefreshing()
     }
 
     func getDataAndUpdateTable(){
