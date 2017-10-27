@@ -103,8 +103,10 @@ class CurrencyTableViewCell: UITableViewCell {
         overlappinglabel.text = ""
         if let image = UIImage.init(named: name!){
             currencyImage.image = image
+            currencyImage.backgroundColor = UIColor.clear
         }else{
             setTextForOverlappingLabel(inputString: name!)
+            currencyImage.backgroundColor = UIColor.lightGray
         }
     }
     
