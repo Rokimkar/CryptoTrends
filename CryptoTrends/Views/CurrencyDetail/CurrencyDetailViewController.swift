@@ -19,6 +19,7 @@ class CurrencyDetailViewController: UIViewController {
     @IBOutlet weak var currencyImageView: UIImageView!
     @IBOutlet weak var cryptoCurrencyDetailTableView: UITableView!
     
+    private let pullToRefereshControl = UIRefreshControl.init()
     var previousFetchedCryptoCurrency : CryptoCurrency?
     var freshFetchedCurrency : CryptoCurrency?
     var bannerView : GADBannerView!
@@ -46,6 +47,12 @@ class CurrencyDetailViewController: UIViewController {
     func commoninit(){
         self.cryptoCurrencyDetailTableView.dataSource = self
         self.cryptoCurrencyDetailTableView.delegate = self
+        if #available(iOS 10.0, *){
+            self.cryptoCurrencyDetailTableView.refreshControl = self.pullToRefereshControl
+        } else {
+            self.cryptoCurrencyDetailTableView.addSubview(self.pullToRefereshControl)
+        }
+        self.pullToRefereshControl.addTarget(self, action: #selector(handlePullToReferesh), for: UIControlEvents.valueChanged)
         self.cryptoCurrencyDetailTableView.register(UINib.init(nibName: "CurrencyDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyDetailTableViewCell")
         self.cryptoCurrencyDetailTableView.separatorStyle = .none
         self.currencyDetailLabel.numberOfLines = 0
@@ -228,8 +235,26 @@ class CurrencyDetailViewController: UIViewController {
         return data
     }
     
+    func getDataAndUpdate(isForceFetch : Bool){
+        DataManager.sharedInstance.getDataForAppendingParameters(withForceFetch: isForceFetch, additionalComponents :[(previousFetchedCryptoCurrency!.name!)],parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"]) { (currencyArray) in
+            if currencyArray.count > 0{
+                self.previousFetchedCryptoCurrency = currencyArray[0]
+                self.cryptoCurrencyDetailTableView.reloadData()
+            }
+            self.setTextForCurrencyDetailLabel(currencyNameFont: 30, lastUpdatedFont: 12)
+            self.animateCurrencyImageView()
+            self.pullToRefereshControl.endRefreshing()
+            
+        }
+    }
+    
     @objc func back(){
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func handlePullToReferesh(){
+        // referesh data and handle currency image animation.
+        getDataAndUpdate(isForceFetch: true)
     }
     
     override func didReceiveMemoryWarning() {

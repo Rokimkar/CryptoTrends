@@ -13,7 +13,11 @@ class DataManager: NSObject {
     static let sharedInstance = DataManager()
     let baseUrl = "https://api.coinmarketcap.com/v1/ticker/"
     
-    func getDataForAppendingParameters(parameters : [String],completionHandler : @escaping (_ data :[CryptoCurrency]) -> Void){
+    func getDataForAppendingParameters(withForceFetch : Bool,additionalComponents : [String], parameters : [String],completionHandler : @escaping (_ data :[CryptoCurrency]) -> Void){
+        var addComponents = ""
+        for component : String in additionalComponents{
+            addComponents += "\(component)/"
+        }
         var parametersStr = ""
         for parameter : String in parameters{
             parametersStr += parameter
@@ -24,7 +28,7 @@ class DataManager: NSObject {
         if parametersStr != ""{
             parametersStr = "?"+parametersStr
         }
-        getCurrencyDataForUrl(url: baseUrl+parametersStr) { (cryptoCurrencyData) in
+        getCurrencyDataForUrl(withForceFetch: withForceFetch, url: baseUrl+addComponents+parametersStr) { (cryptoCurrencyData) in
             //print(cryptoCurrencyData)
             completionHandler(cryptoCurrencyData)
         }
@@ -40,15 +44,23 @@ class DataManager: NSObject {
         }
     }
     
-    fileprivate func getCurrencyDataForUrl(url:String,completionHandler  :@escaping (_ data:[CryptoCurrency]) -> Void){
-        CacheHelper.getCacheData(url: (URL.init(string: url)?.pathComponents.last)!, success: { (data) in
-            completionHandler(data)
-        }) { (error) in
+    fileprivate func getCurrencyDataForUrl(withForceFetch:Bool,url:String,completionHandler  :@escaping (_ data:[CryptoCurrency]) -> Void){
+        if withForceFetch == true{
             getDataForUrl(urlString: url, success: { (data) in
                 completionHandler(data)
             }, failure: { (error) in
                 completionHandler([])
             })
+        } else {
+            CacheHelper.getCacheData(url: (URL.init(string: url)?.pathComponents.last)!, success: { (data) in
+                completionHandler(data)
+            }) { (error) in
+                getDataForUrl(urlString: url, success: { (data) in
+                    completionHandler(data)
+                }, failure: { (error) in
+                    completionHandler([])
+                })
+            }
         }
         
     }

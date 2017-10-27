@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
-        getDataAndUpdateTable()
+        getDataAndUpdateTable(isForceFetch: true)
         showAds()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -52,11 +52,11 @@ class HomeViewController: UIViewController {
         pullToRefreshControl.beginRefreshing()
     }
 
-    func getDataAndUpdateTable(){
+    func getDataAndUpdateTable(isForceFetch : Bool){
 //        SettingsManager.sharedInstance.updateSelectedCurrency(updatedCurrency: CurrencyCode.INR) { (isUpdateded) in
 //            //
 //        }
-        DataManager.sharedInstance.getDataForAppendingParameters(parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"]) { (data) in
+        DataManager.sharedInstance.getDataForAppendingParameters(withForceFetch: isForceFetch,additionalComponents :[],parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"]) { (data) in
             self.dataArray = data
             self.pullToRefreshControl.endRefreshing()
             self.currencyTableView.reloadData()
@@ -92,7 +92,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func pullToRefereshed(){
-        getDataAndUpdateTable()
+        getDataAndUpdateTable(isForceFetch: true)
     }
     
     @objc func settingsClicked(){
