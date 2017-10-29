@@ -65,7 +65,7 @@ class CurrencyDetailViewController: UIViewController {
         self.setTextForCurrencyDetailLabel(currencyNameFont: 30, lastUpdatedFont: 12)
         self.currencyImageView.layer.shadowColor = UIColor.black.cgColor
         self.currencyImageView.layer.shadowRadius = CGFloat(2.0)
-        self.currencyImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.currencyImageView.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.currencyImageView.layer.shadowOpacity = 1
         self.currencyImageView.clipsToBounds = false
     }

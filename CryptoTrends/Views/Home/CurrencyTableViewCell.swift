@@ -30,7 +30,7 @@ class CurrencyTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.clear
         cellBackgroundView.layer.cornerRadius = 5
         self.currencyImage.layer.shadowColor = UIColor.black.cgColor
-        self.currencyImage.layer.shadowRadius = CGFloat(5.0)
+        self.currencyImage.layer.shadowRadius = CGFloat(2.0)
         self.currencyImage.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.currencyImage.layer.shadowOpacity = 1
         self.currencyImage.clipsToBounds = false

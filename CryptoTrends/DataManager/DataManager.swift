@@ -66,7 +66,7 @@ class DataManager: NSObject {
     }
     
     private func getDataForUrl(urlString : String, success : @escaping ([CryptoCurrency]) -> Void ,failure : @escaping (_ error : Error) -> Void) {
-        Alamofire.request(URL.init(string: urlString)!).responseData { (response) in
+        Alamofire.request(URL.init(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!).responseData { (response) in
             if let data = response.result.value{
                 let decoder = JSONDecoder()
                 do {
