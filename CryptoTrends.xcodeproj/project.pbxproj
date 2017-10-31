@@ -19,6 +19,7 @@
 		9E3881CE1F9B565C00C922B7 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3881CC1F9B565C00C922B7 /* SettingsTableViewCell.swift */; };
 		9E3881CF1F9B565C00C922B7 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E3881CD1F9B565C00C922B7 /* SettingsTableViewCell.xib */; };
 		9E3881D31F9B700900C922B7 /* SettingsItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E3881D21F9B700900C922B7 /* SettingsItem.plist */; };
+		9E54377B1FA7B08500A8AFC5 /* RabinKarpSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E54377A1FA7B08500A8AFC5 /* RabinKarpSearch.swift */; };
 		9E69E1241F9922E4000B9DDE /* CountryCurrencySymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E69E1231F9922E4000B9DDE /* CountryCurrencySymbols.swift */; };
 		9E70D5301F771913002EC263 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D52F1F771913002EC263 /* AppDelegate.swift */; };
 		9E70D5321F771913002EC263 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D5311F771913002EC263 /* HomeViewController.swift */; };
@@ -51,6 +52,7 @@
 		9E3881CC1F9B565C00C922B7 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		9E3881CD1F9B565C00C922B7 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		9E3881D21F9B700900C922B7 /* SettingsItem.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SettingsItem.plist; sourceTree = "<group>"; };
+		9E54377A1FA7B08500A8AFC5 /* RabinKarpSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RabinKarpSearch.swift; sourceTree = "<group>"; };
 		9E69E1231F9922E4000B9DDE /* CountryCurrencySymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCurrencySymbols.swift; sourceTree = "<group>"; };
 		9E70D52C1F771913002EC263 /* CryptoTrends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoTrends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E70D52F1F771913002EC263 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				9E24C2BC1F8144AA00ED4691 /* GenericFunctions.swift */,
 				9EC0694D1F87909C0073DB52 /* AdManager.swift */,
 				9EF206011F8ABF0E00ABF9A7 /* SettingsManager.swift */,
+				9E54377A1FA7B08500A8AFC5 /* RabinKarpSearch.swift */,
 				9E24C2B21F7EDC7C00ED4691 /* Views */,
 				9E30B9A11F79745800DF009D /* DataManager */,
 				9E30B9A41F7988E300DF009D /* Model */,
@@ -330,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E54377B1FA7B08500A8AFC5 /* RabinKarpSearch.swift in Sources */,
 				9E24C2BD1F8144AA00ED4691 /* GenericFunctions.swift in Sources */,
 				9E30B9A71F79AD6800DF009D /* CurrencyTableViewCell.swift in Sources */,
 				9E69E1241F9922E4000B9DDE /* CountryCurrencySymbols.swift in Sources */,

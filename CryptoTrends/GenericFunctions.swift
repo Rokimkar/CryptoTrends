@@ -52,4 +52,16 @@ class GenericFunctions: NSObject {
         return result
         
     }
+    
+    class func searchKeyword(dataArray : [CryptoCurrency],keyword : String) -> [CryptoCurrency]{
+        var resultArray : [CryptoCurrency] = []
+        for currency : CryptoCurrency in dataArray{
+            if RabinKarpSearch.search(text: currency.name ?? "", pattern: keyword) != -1{
+                resultArray.append(currency)
+            }else if RabinKarpSearch.search(text: currency.symbol ?? "", pattern: keyword) != -1{
+                resultArray.append(currency)
+            }
+        }
+        return resultArray
+    }
 }

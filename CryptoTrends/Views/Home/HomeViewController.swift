@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         self.currencyTableView.separatorStyle = .none
         self.view.backgroundColor = UIColor.clear
         self.view.backgroundColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
-        self.title = "CryptoTrends"
+        self.title = "Home"
         self.adView.backgroundColor = UIColor.clear
         setUpNavigationBar()
         if #available(iOS 10.0, *){
@@ -60,6 +60,7 @@ class HomeViewController: UIViewController {
             self.dataArray = data
             self.pullToRefreshControl.endRefreshing()
             self.currencyTableView.reloadData()
+            print(GenericFunctions.searchKeyword(dataArray: data, keyword: "bit"))
         }
     }
     
@@ -88,7 +89,17 @@ class HomeViewController: UIViewController {
         let settingsButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 50, height: 50))
         settingsButton.setImage(UIImage.init(named: "Settings"), for: .normal)
         settingsButton.addTarget(self, action: #selector(settingsClicked), for: .touchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: settingsButton)
+        
+        let searchButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
+        searchButton.setImage(UIImage.init(named: "Search"), for: .normal)
+        searchButton.addTarget(self, action: #selector(searchClicked), for: .touchUpInside)
+        searchButton.imageView?.contentMode = .scaleAspectFit
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem.init(customView: searchButton)]
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: settingsButton)
+    }
+    
+    @objc func searchClicked(){
+        
     }
     
     @objc func pullToRefereshed(){
