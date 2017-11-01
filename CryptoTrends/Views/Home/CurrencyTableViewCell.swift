@@ -59,38 +59,41 @@ class CurrencyTableViewCell: UITableViewCell {
     }
     
     func fillCurrencyDescription(currency:CryptoCurrency) -> NSMutableAttributedString{
-        let priceTag = "Price : \(SettingsManager.sharedInstance.getConvertedCurrencyStringFromUSD(to: SettingsManager.sharedInstance.getSelectedCurrency(), value: currency.priceUsd!))"
+        let priceTag = "Price : \(SettingsManager.sharedInstance.getConvertedCurrencyStringFromUSD(to: SettingsManager.sharedInstance.getSelectedCurrency(), value: currency.priceUsd ?? ""))"
         let availableSupplyTag = "Available Supply : "
-        let lastUpdatedTag = "Last updated \(GenericFunctions.getTimeDifferenceFromNow(time: currency.lastUpdated!))"
-        let availableSupplySuffix = GenericFunctions.suffixNumber(inputNumber: currency.availableSupply!)
-        let currencyDescription = "\(priceTag) (\(currency.percentChangedLast1Hr!)%)\n\(availableSupplyTag)\(availableSupplySuffix)\n\(lastUpdatedTag)"
+        let lastUpdatedTag = "Last updated \(GenericFunctions.getTimeDifferenceFromNow(time: currency.lastUpdated ?? ""))"
+        let availableSupplySuffix = GenericFunctions.suffixNumber(inputNumber: currency.availableSupply ?? "")
+        let currencyDescription = "\(priceTag) (\(currency.percentChangedLast1Hr ?? "")%)\n\(availableSupplyTag)\(availableSupplySuffix)\n\(lastUpdatedTag)"
         
         //Font
         
         let attributedString = NSMutableAttributedString.init(string: currencyDescription)
         attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium), range: NSRange.init(location: 0, length: priceTag.count))
        // attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium), range: NSRange.init(location: priceTag.count, length: currency.priceUsd!.count))
-        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), range: NSRange.init(location: priceTag.count+1, length: currency.percentChangedLast1Hr!.count+3))
-        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium), range: NSRange.init(location: priceTag.count+5+currency.percentChangedLast1Hr!.count, length: availableSupplyTag.count+availableSupplySuffix.count))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), range: NSRange.init(location: priceTag.count+1, length: (currency.percentChangedLast1Hr ?? "").count+3))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium), range: NSRange.init(location: priceTag.count+5+(currency.percentChangedLast1Hr ?? "").count, length: availableSupplyTag.count+availableSupplySuffix.count))
         attributedString.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.light), range: NSRange.init(location: currencyDescription.count - lastUpdatedTag.count, length: lastUpdatedTag.count))
         
         //Color
         
-        let lastHrPriceChange = currency.percentChangedLast1Hr!
-        if String(lastHrPriceChange.prefix(upTo: lastHrPriceChange.index(lastHrPriceChange.startIndex, offsetBy: 1))) == "-"{
-             attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 200/255, green: 81/255, blue: 56/255, alpha: 1.0), range: NSRange.init(location: priceTag.count+1, length: currency.percentChangedLast1Hr!.count+3))//red color
-        }else{
-             attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 84/255, green: 167/255, blue: 65/255, alpha: 1.0), range: NSRange.init(location: priceTag.count+1, length: currency.percentChangedLast1Hr!.count+3))//Green color
+        let lastHrPriceChange = (currency.percentChangedLast1Hr ?? "")
+        if lastHrPriceChange != ""{
+            if String(lastHrPriceChange.prefix(upTo: lastHrPriceChange.index(lastHrPriceChange.startIndex, offsetBy: 1))) == "-"{
+                attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 200/255, green: 81/255, blue: 56/255, alpha: 1.0), range: NSRange.init(location: priceTag.count+1, length: (currency.percentChangedLast1Hr ?? "").count+3))//red color
+            }else{
+                attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 84/255, green: 167/255, blue: 65/255, alpha: 1.0), range: NSRange.init(location: priceTag.count+1, length: (currency.percentChangedLast1Hr ?? "").count+3))//Green color
+            }
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.darkGray, range: NSRange.init(location: currencyDescription.count - lastUpdatedTag.count, length: lastUpdatedTag.count))
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: priceTag.count-((currency.priceUsd ?? "").count+2), length: (currency.priceUsd ?? "").count+2))
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: priceTag.count+(currency.percentChangedLast1Hr ?? "").count+3+availableSupplyTag.count, length: (currency.availableSupply ?? "").count))
         }
-        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.darkGray, range: NSRange.init(location: currencyDescription.count - lastUpdatedTag.count, length: lastUpdatedTag.count))
-        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: priceTag.count-(currency.priceUsd!.count+2), length: currency.priceUsd!.count+2))
-        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.init(red: 38/255, green: 23/255, blue: 161/255, alpha: 1), range: NSRange.init(location: priceTag.count+currency.percentChangedLast1Hr!.count+3+availableSupplyTag.count, length: currency.availableSupply!.count))
+
         
         //Paragraph
         
         let paragraphAttributeLineSpacing = NSMutableParagraphStyle.init()
         paragraphAttributeLineSpacing.lineSpacing = 10
-        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphAttributeLineSpacing, range: NSRange.init(location: priceTag.count+5+currency.percentChangedLast1Hr!.count, length: currencyDescription.count-(priceTag.count+5+currency.percentChangedLast1Hr!.count)))
+        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphAttributeLineSpacing, range: NSRange.init(location: priceTag.count+5+(currency.percentChangedLast1Hr ?? "").count, length: currencyDescription.count-(priceTag.count+5+(currency.percentChangedLast1Hr ?? "").count)))
         let paragraphAttributeRightAlignment = NSMutableParagraphStyle.init()
         paragraphAttributeRightAlignment.alignment = .right
         attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphAttributeRightAlignment, range: NSRange.init(location: currencyDescription.count - lastUpdatedTag.count, length: lastUpdatedTag.count))

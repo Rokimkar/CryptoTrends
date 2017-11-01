@@ -14,7 +14,7 @@ class GenericFunctions: NSObject {
     class func suffixNumber (inputNumber : Any) -> String {
         var number = 0.0
         if inputNumber is String{
-            number = Double(inputNumber as! String)!
+            number = Double(inputNumber as! String) ?? 0
         }
         let sign = ((number < 0) ? "-" : "" )
         if (number < 1000.0){

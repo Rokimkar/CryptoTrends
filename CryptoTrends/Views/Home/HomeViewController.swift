@@ -99,7 +99,9 @@ class HomeViewController: UIViewController {
     }
     
     @objc func searchClicked(){
-        
+        let searchController = SearchViewController.init(nibName: "SearchViewController", bundle: nil)
+        searchController.dataArray = dataArray
+        self.navigationController?.pushViewController(searchController, animated: true)
     }
     
     @objc func pullToRefereshed(){

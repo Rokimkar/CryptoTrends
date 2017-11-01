@@ -40,6 +40,9 @@ class RabinKarpSearch: NSObject {
         
         let patternHash = hash(array: patternArray)
         var endIdx = patternArray.count - 1
+        if endIdx < 0{
+            endIdx = 0
+        }
         let firstChars = Array(textArray[0...endIdx])
         let firstHash = hash(array: firstChars)
         
