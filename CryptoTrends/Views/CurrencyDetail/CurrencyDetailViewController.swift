@@ -236,7 +236,7 @@ class CurrencyDetailViewController: UIViewController {
     }
     
     func getDataAndUpdate(isForceFetch : Bool){
-        DataManager.sharedInstance.getDataForAppendingParameters(withForceFetch: isForceFetch, additionalComponents :[(previousFetchedCryptoCurrency!.name!)],parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"]) { (currencyArray) in
+        DataManager.sharedInstance.getDataForAppendingParameters(withForceFetch: isForceFetch, additionalComponents :[(previousFetchedCryptoCurrency!.name!)],parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"], cacheTime: "60") { (currencyArray) in
             if currencyArray.count > 0{
                 self.previousFetchedCryptoCurrency = currencyArray[0]
                 self.cryptoCurrencyDetailTableView.reloadData()

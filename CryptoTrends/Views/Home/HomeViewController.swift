@@ -56,7 +56,7 @@ class HomeViewController: UIViewController {
 //        SettingsManager.sharedInstance.updateSelectedCurrency(updatedCurrency: CurrencyCode.INR) { (isUpdateded) in
 //            //
 //        }
-        DataManager.sharedInstance.getDataForAppendingParameters(withForceFetch: isForceFetch,additionalComponents :[],parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"]) { (data) in
+        DataManager.sharedInstance.getDataForAppendingParameters(withForceFetch: isForceFetch,additionalComponents :[],parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"], cacheTime: "60") { (data) in
             self.dataArray = data
             self.pullToRefreshControl.endRefreshing()
             self.currencyTableView.reloadData()

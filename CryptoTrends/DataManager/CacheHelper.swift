@@ -20,12 +20,12 @@ class CacheHelper: NSObject {
         }
     }
     
-    class func getCacheData(url : String, success : ([CryptoCurrency]) -> Void,failure : (_ error:Error) -> Void){
+    class func getCacheData(url : URLObject, success : ([CryptoCurrency]) -> Void,failure : (_ error:Error) -> Void){
         do{
-            let cacheData = try Disk.retrieve(url, from: .documents, as: Cache.self)
+            let cacheData = try Disk.retrieve(url.urlString, from: .documents, as: Cache.self)
             let now = Date() //Date(timeIntervalSinceReferenceDate:NSTimeIntervalSince1970)
             let timeDifference = abs(Int(cacheData.lastSavedTime!.timeIntervalSince(now))/60) //in minutes
-            if timeDifference < 5{
+            if timeDifference < Int(url.cacheTime)!/60{
                 success(cacheData.data!)
             }else{
                 failure(NSError.init(domain: "Time Limit exceeded", code: 1, userInfo: nil))
