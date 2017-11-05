@@ -102,13 +102,10 @@
 		9E24C2B21F7EDC7C00ED4691 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9E6641AE1FAF4B4D00BA4891 /* Search */,
 				9E30B9A91F79AD7700DF009D /* Home */,
 				9E24C2BB1F7EDD0200ED4691 /* CurrencyDetail */,
-				9E3881C61F9B4F9A00C922B7 /* SettingsViewController.swift */,
-				9E3881C71F9B4F9A00C922B7 /* SettingsViewController.xib */,
-				9E3881CC1F9B565C00C922B7 /* SettingsTableViewCell.swift */,
-				9E3881CD1F9B565C00C922B7 /* SettingsTableViewCell.xib */,
-				9E3881D21F9B700900C922B7 /* SettingsItem.plist */,
+				9E6641AD1FAF4B2100BA4891 /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,6 +150,27 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		9E6641AD1FAF4B2100BA4891 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9E3881C61F9B4F9A00C922B7 /* SettingsViewController.swift */,
+				9E3881C71F9B4F9A00C922B7 /* SettingsViewController.xib */,
+				9E3881CC1F9B565C00C922B7 /* SettingsTableViewCell.swift */,
+				9E3881CD1F9B565C00C922B7 /* SettingsTableViewCell.xib */,
+				9E3881D21F9B700900C922B7 /* SettingsItem.plist */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		9E6641AE1FAF4B4D00BA4891 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				9E5437901FA8FADE00A8AFC5 /* SearchViewController.swift */,
+				9E5437911FA8FADE00A8AFC5 /* SearchViewController.xib */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		9E70D5231F771913002EC263 = {
 			isa = PBXGroup;
 			children = (
@@ -179,8 +197,6 @@
 				9EC0694D1F87909C0073DB52 /* AdManager.swift */,
 				9EF206011F8ABF0E00ABF9A7 /* SettingsManager.swift */,
 				9E54377A1FA7B08500A8AFC5 /* RabinKarpSearch.swift */,
-				9E5437901FA8FADE00A8AFC5 /* SearchViewController.swift */,
-				9E5437911FA8FADE00A8AFC5 /* SearchViewController.xib */,
 				9E24C2B21F7EDC7C00ED4691 /* Views */,
 				9E30B9A11F79745800DF009D /* DataManager */,
 				9E30B9A41F7988E300DF009D /* Model */,
@@ -503,6 +519,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.self.CryptoTrends;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -518,6 +535,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.self.CryptoTrends;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

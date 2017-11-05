@@ -35,4 +35,23 @@ class CacheHelper: NSObject {
             failure(error)
         }
     }
+    
+    class func getCurrencyCacheData(url : URLObject,success : (_ countrySymbols : CountryCurrencySymbols)->Void,failure : (_ error:Error) -> Void){
+        do{
+            let cacheData = try Disk.retrieve(url.urlString, from: .documents, as: CountryCurrencySymbols.self)
+            success(cacheData)
+        }catch{
+            print(error)
+            failure(error)
+        }
+    }
+    
+    class func saveCountryCurrencData(urlStr:String, data : CountryCurrencySymbols) {
+        let cache = data
+        do{
+            try Disk.save(cache, to: .documents, as: urlStr)
+        }catch{
+            print(error)
+        }
+    }
 }

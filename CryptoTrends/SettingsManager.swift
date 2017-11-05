@@ -56,6 +56,7 @@ class SettingsManager: NSObject {
     }
     var countryCurrencySymbols : CountryCurrencySymbols? = nil
     fileprivate var selectedCurrency = CurrencyCode.INR
+    static let currencyCodeUrl = "https://api.fixer.io/latest"
     static let currencyVisualSymbolsList = ["AUD":"A$","BGN":"BGN","BRL":"R$","CAD":"$","CHF":"CHF","CNY":"¥","CZK":"Kč","DKK":"kr","GBP":"£","HKD":"$","HRK":"kn","HUF":"Ft","IDR":"Rp","ILS":"₪","INR":"₹","JPY":"¥","KRW":"₩","MXN":"$","MYR":"RM","NOK":"kr","NZD":"$","PHP":"₱","PLN":"zł","RON":"lei","RUB":"руб","SEK":"kr","SGD":"S$","THB":"฿","TRY":"TL","USD":"$","ZAR":"R"]
     static let currencySymbolsArray = ["AUD","BGN","AUD","BGN","BRL","CAD","CHF","CNY","CZK","DKK","GBP","HKD","HRK","HUF","IDR","ILS","INR","JPY","KRW","MXN","MYR","NOK","NZD","PHP","PLN","RON","RUB","SEK","SGD","THB","TRY","USD","ZAR"]
     
@@ -81,20 +82,35 @@ class SettingsManager: NSObject {
     
     func getCountryCurrency(completionhandler:@escaping (_ isFetched : Bool)->Void){
         if self.countryCurrencySymbols == nil{
-            DataManager.sharedInstance.getDataForUrl(url: "https://api.fixer.io/latest", completionHandler: {(data) in
-                let decoder = JSONDecoder()
-                do {
-                    let mappedData = try decoder.decode(CountryCurrencySymbols.self, from: data)
-                    self.countryCurrencySymbols = mappedData
+            CacheHelper.getCurrencyCacheData(url: URLObject.init(url: SettingsManager.currencyCodeUrl, cacheTime: String(24*60*60)), success: { (countryCurrencySymbols) in
+                self.countryCurrencySymbols = countryCurrencySymbols
+                completionhandler(true)
+            }, failure: { (error) in
+                self.fetchCurrencyData(success: {
                     completionhandler(true)
-                }catch{
+                }, failure: {
                     completionhandler(false)
-                }
+                })
             })
         }else{
             completionhandler(true)
         }
         
+    }
+    
+    func fetchCurrencyData(success : @escaping () -> Void,failure : @escaping () -> Void){
+        DataManager.sharedInstance.getDataForUrl(url: "https://api.fixer.io/latest", completionHandler: {(data) in
+            let decoder = JSONDecoder()
+            do {
+                let mappedData = try decoder.decode(CountryCurrencySymbols.self, from: data)
+                self.countryCurrencySymbols = mappedData
+                print(mappedData)
+                CacheHelper.saveCountryCurrencData(urlStr: SettingsManager.currencyCodeUrl, data: mappedData)
+                success()
+            }catch{
+                failure()
+            }
+        })
     }
     
     func getConvertedCurrencyStringFromUSD(to: CurrencyCode, value : String) -> String{

@@ -57,6 +57,9 @@ class RabinKarpSearch: NSObject {
         // Now slide the window across the text to be searched
         for idx in 1...(textArray.count - patternArray.count) {
             endIdx = idx + (patternArray.count - 1)
+            if endIdx < idx{
+                return -1
+            }
             let window = Array(textArray[idx...endIdx])
             let windowHash = nextHash(
                 prevHash: prevHash,

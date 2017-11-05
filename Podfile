@@ -7,5 +7,6 @@ target 'CryptoTrends' do
   pod 'Alamofire'
   pod 'Disk'
   pod 'Firebase/AdMob'
+  pod 'MoEngage-iOS-SDK'
 # Pods for CryptoTrends
 end
