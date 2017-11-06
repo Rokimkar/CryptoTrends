@@ -75,6 +75,9 @@ extension SettingsViewController : UITableViewDataSource,UITableViewDelegate{
             }else{
                 self.view.sendSubview(toBack: self.settingsTableView)
             }
+        }else if indexPath.row == 1{
+            let pushPrefController = PushNotificationPreferenceViewController.init(nibName: "PushNotificationPreferenceViewController", bundle: nil)
+            self.navigationController?.pushViewController(pushPrefController, animated: true)
         }
     }
     

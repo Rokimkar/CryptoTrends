@@ -22,6 +22,8 @@
 		9E54377B1FA7B08500A8AFC5 /* RabinKarpSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E54377A1FA7B08500A8AFC5 /* RabinKarpSearch.swift */; };
 		9E5437921FA8FADE00A8AFC5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5437901FA8FADE00A8AFC5 /* SearchViewController.swift */; };
 		9E5437931FA8FADE00A8AFC5 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E5437911FA8FADE00A8AFC5 /* SearchViewController.xib */; };
+		9E6641B31FAFA16600BA4891 /* PushNotificationPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6641B11FAFA16600BA4891 /* PushNotificationPreferenceViewController.swift */; };
+		9E6641B41FAFA16600BA4891 /* PushNotificationPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E6641B21FAFA16600BA4891 /* PushNotificationPreferenceViewController.xib */; };
 		9E69E1241F9922E4000B9DDE /* CountryCurrencySymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E69E1231F9922E4000B9DDE /* CountryCurrencySymbols.swift */; };
 		9E70D5301F771913002EC263 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D52F1F771913002EC263 /* AppDelegate.swift */; };
 		9E70D5321F771913002EC263 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D5311F771913002EC263 /* HomeViewController.swift */; };
@@ -58,6 +60,8 @@
 		9E54377A1FA7B08500A8AFC5 /* RabinKarpSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RabinKarpSearch.swift; sourceTree = "<group>"; };
 		9E5437901FA8FADE00A8AFC5 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9E5437911FA8FADE00A8AFC5 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		9E6641B11FAFA16600BA4891 /* PushNotificationPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationPreferenceViewController.swift; sourceTree = "<group>"; };
+		9E6641B21FAFA16600BA4891 /* PushNotificationPreferenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PushNotificationPreferenceViewController.xib; sourceTree = "<group>"; };
 		9E69E1231F9922E4000B9DDE /* CountryCurrencySymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCurrencySymbols.swift; sourceTree = "<group>"; };
 		9E70D52C1F771913002EC263 /* CryptoTrends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoTrends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E70D52F1F771913002EC263 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 		9E6641AD1FAF4B2100BA4891 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				9E6641B51FAFA52900BA4891 /* PushPreference */,
 				9E3881C61F9B4F9A00C922B7 /* SettingsViewController.swift */,
 				9E3881C71F9B4F9A00C922B7 /* SettingsViewController.xib */,
 				9E3881CC1F9B565C00C922B7 /* SettingsTableViewCell.swift */,
@@ -169,6 +174,15 @@
 				9E5437911FA8FADE00A8AFC5 /* SearchViewController.xib */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		9E6641B51FAFA52900BA4891 /* PushPreference */ = {
+			isa = PBXGroup;
+			children = (
+				9E6641B11FAFA16600BA4891 /* PushNotificationPreferenceViewController.swift */,
+				9E6641B21FAFA16600BA4891 /* PushNotificationPreferenceViewController.xib */,
+			);
+			path = PushPreference;
 			sourceTree = "<group>";
 		};
 		9E70D5231F771913002EC263 = {
@@ -294,6 +308,7 @@
 				9E5437931FA8FADE00A8AFC5 /* SearchViewController.xib in Resources */,
 				9E30B9A81F79AD6800DF009D /* CurrencyTableViewCell.xib in Resources */,
 				9EC069421F8287990073DB52 /* CurrencyDetailTableViewCell.xib in Resources */,
+				9E6641B41FAFA16600BA4891 /* PushNotificationPreferenceViewController.xib in Resources */,
 				9EAE40D81F7C293200507FA7 /* Images.xcassets in Resources */,
 				9E70D53A1F771913002EC263 /* LaunchScreen.storyboard in Resources */,
 				9E70D5371F771913002EC263 /* Assets.xcassets in Resources */,
@@ -372,6 +387,7 @@
 				9E3881CE1F9B565C00C922B7 /* SettingsTableViewCell.swift in Sources */,
 				9E70D5301F771913002EC263 /* AppDelegate.swift in Sources */,
 				9E3881C81F9B4F9A00C922B7 /* SettingsViewController.swift in Sources */,
+				9E6641B31FAFA16600BA4891 /* PushNotificationPreferenceViewController.swift in Sources */,
 				9EF206021F8ABF0E00ABF9A7 /* SettingsManager.swift in Sources */,
 				9E30B9A31F79749500DF009D /* Cache.swift in Sources */,
 				9EC0694E1F87909C0073DB52 /* AdManager.swift in Sources */,

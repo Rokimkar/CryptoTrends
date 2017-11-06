@@ -20,13 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Moengage
         
         #if DEBUG
-            MoEngage.sharedInstance().initializeDev(withApiKey: "Your APP ID", in: application, withLaunchOptions: launchOptions, openDeeplinkUrlAutomatically: true)
+            MoEngage.sharedInstance().initializeDev(withApiKey: "WTZ62TE0EFOZDUBSIPR6FASN", in: application, withLaunchOptions: launchOptions, openDeeplinkUrlAutomatically: true)
         #else
-            MoEngage.sharedInstance().initializeProd(withApiKey: "Your APP ID", in: application, withLaunchOptions: launchOptions, openDeeplinkUrlAutomatically: true)
+            MoEngage.sharedInstance().initializeProd(withApiKey: "WTZ62TE0EFOZDUBSIPR6FASN", in: application, withLaunchOptions: launchOptions, openDeeplinkUrlAutomatically: true)
         #endif
         
         self.sendAppStatusToMoEngage()
-        
+    MoEngage.sharedInstance().setUserUniqueID(UIDevice.current.identifierForVendor?.uuidString)
         return true
     }
 
@@ -36,19 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-       
+       MoEngage.sharedInstance().stop(application)
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        
+        MoEngage.sharedInstance().applicationWillEnterForeground(application)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        
+        MoEngage.sharedInstance().applicationBecameActiveinApplication(application)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        MoEngage.sharedInstance().applicationTerminated(application)
     }
     
     // Mark : Supporting functions

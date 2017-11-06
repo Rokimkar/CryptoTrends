@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MoEngage_iOS_SDK
 
 class GenericFunctions: NSObject {
     static let kOneDay = 3600
@@ -63,5 +64,10 @@ class GenericFunctions: NSObject {
             }
         }
         return resultArray
+    }
+    
+    class func sendEventsToMoEngage(event : String,payload : Dictionary<String,String>){
+        let payloads = NSMutableDictionary.init(dictionary: payload)
+        MoEngage.sharedInstance().trackEvent(event, andPayload: payloads)
     }
 }

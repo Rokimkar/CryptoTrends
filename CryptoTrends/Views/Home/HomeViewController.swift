@@ -53,14 +53,10 @@ class HomeViewController: UIViewController {
     }
 
     func getDataAndUpdateTable(isForceFetch : Bool){
-//        SettingsManager.sharedInstance.updateSelectedCurrency(updatedCurrency: CurrencyCode.INR) { (isUpdateded) in
-//            //
-//        }
         DataManager.sharedInstance.getDataForAppendingParameters(withForceFetch: isForceFetch,additionalComponents :[],parameters: ["convert=\(SettingsManager.sharedInstance.getSelectedCurrency())"], cacheTime: "60") { (data) in
             self.dataArray = data
             self.pullToRefreshControl.endRefreshing()
             self.currencyTableView.reloadData()
-            print(GenericFunctions.searchKeyword(dataArray: data, keyword: "bit"))
         }
     }
     

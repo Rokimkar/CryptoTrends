@@ -68,6 +68,7 @@ class CurrencyDetailViewController: UIViewController {
         self.currencyImageView.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.currencyImageView.layer.shadowOpacity = 1
         self.currencyImageView.clipsToBounds = false
+        GenericFunctions.sendEventsToMoEngage(event : "CurrencyDetail",payload:["CurrencyName":previousFetchedCryptoCurrency?.name ?? "","Price" : previousFetchedCryptoCurrency?.priceUsd ?? "0"])
     }
     
     func animateCurrencyImageView(){
