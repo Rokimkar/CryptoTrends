@@ -83,6 +83,7 @@ class CurrencyDetailViewController: UIViewController {
     
     func setUpNavigation(){
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.backgroundColor = UIColor.clear
     }
     
