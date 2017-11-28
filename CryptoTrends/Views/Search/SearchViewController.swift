@@ -21,6 +21,11 @@ class SearchViewController: UIViewController {
         commonInit()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     func commonInit(){
         self.searchBar.delegate = self
         self.searchResultTableView.register(UINib.init(nibName: "CurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyTableViewCell")
@@ -66,6 +71,8 @@ extension SearchViewController : UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        let currencyDetailVC = CurrencyDetailViewController.init(nibName: "CurrencyDetailViewController", bundle: nil)
+        currencyDetailVC.previousFetchedCryptoCurrency = (tableView.cellForRow(at: indexPath) as! CurrencyTableViewCell).currency!
+        self.navigationController?.pushViewController(currencyDetailVC, animated: true)
     }
 }

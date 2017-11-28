@@ -56,12 +56,13 @@ class CurrencyDetailViewController: UIViewController {
         self.cryptoCurrencyDetailTableView.register(UINib.init(nibName: "CurrencyDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyDetailTableViewCell")
         self.cryptoCurrencyDetailTableView.separatorStyle = .none
         self.currencyDetailLabel.numberOfLines = 0
-        if let bgColor = getAverageColorValueForCurrency(){
-            backGroundImageView.backgroundColor = bgColor
-        }
         self.view.backgroundColor = UIColor.white
         self.cryptoCurrencyDetailTableView.backgroundColor = UIColor.clear
         setUpNavigation()
+        if let bgColor = getAverageColorValueForCurrency(){
+            backGroundImageView.backgroundColor = bgColor
+            self.navigationController?.navigationBar.barTintColor = bgColor
+        }
         self.setTextForCurrencyDetailLabel(currencyNameFont: 30, lastUpdatedFont: 12)
         self.currencyImageView.layer.shadowColor = UIColor.black.cgColor
         self.currencyImageView.layer.shadowRadius = CGFloat(2.0)
@@ -72,40 +73,17 @@ class CurrencyDetailViewController: UIViewController {
     }
     
     func animateCurrencyImageView(){
-//        self.currencyImageView.center = CGPoint.init(x: self.currencyImageView.center.x, y: self.currencyImageView.center.y-35)
-//        UIView.animate(withDuration: 2, delay: 0.5, usingSpringWithDamping: 0.35, initialSpringVelocity: 0.0, options: [] , animations: {
-//            self.currencyImageView.center = CGPoint.init(x: self.currencyImageView.center.x, y: self.currencyImageView.center.y+35)
-//        }, completion: nil)
-        
-                let rotationAnimation = CABasicAnimation.init(keyPath: "transform.rotation.z")
-                rotationAnimation.toValue = 3.14159 // pi rotation
-                rotationAnimation.duration = CFTimeInterval.init(0.35)
-                rotationAnimation.isCumulative = true
-                rotationAnimation.repeatCount = 2
-                self.currencyImageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
-        
-        //        let yrotationAnimation = CABasicAnimation.init(keyPath: "transform.rotation.y")
-        //        yrotationAnimation.toValue = 3.14
-        //        yrotationAnimation.duration = CFTimeInterval.init(0.5)
-        //        yrotationAnimation.isCumulative = true
-        //        yrotationAnimation.repeatCount = 5
-        //        self.currencyImageView.layer.add(yrotationAnimation, forKey: "yrotationAnimation")
+        let rotationAnimation = CABasicAnimation.init(keyPath: "transform.rotation.z")
+        rotationAnimation.toValue = 3.14159 // pi rotation
+        rotationAnimation.duration = CFTimeInterval.init(0.35)
+        rotationAnimation.isCumulative = true
+        rotationAnimation.repeatCount = 2
+        self.currencyImageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
     }
     
     func setUpNavigation(){
-        let backButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 60, height: 60))
-        backButton.imageEdgeInsets = UIEdgeInsetsMake(0, -60, 0, 0)
-        backButton.setImage(UIImage.init(named: "Back"), for: UIControlState.normal)
-        backButton.addTarget(self, action: #selector(self.back), for:UIControlEvents.touchUpInside)
-        let backNavigationItem = UIBarButtonItem.init(customView: backButton)
-        self.navigationItem.leftBarButtonItem = backNavigationItem
-        
-        // Transparent Navigation Bar
-        
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
     }
     
     func getAverageColorValueForCurrency() -> UIColor?{
@@ -125,7 +103,7 @@ class CurrencyDetailViewController: UIViewController {
             context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: kCIFormatRGBA8, colorSpace: CGColorSpaceCreateDeviceRGB())
             
             // Compute and implement result.
-            let result = UIColor.init(red: 1.0-CGFloat(bitmap[0])/255, green: 1.0-CGFloat(bitmap[1])/255, blue: 1.0-CGFloat(bitmap[2])/255, alpha: 0.6)
+            let result = UIColor.init(red: 1.0-CGFloat(bitmap[0])/255, green: 1.0-CGFloat(bitmap[1])/255, blue: 1.0-CGFloat(bitmap[2])/255, alpha: 1)
             self.backgroundView.backgroundColor =  UIColor.init(red:CGFloat(bitmap[0])/255, green:CGFloat(bitmap[1])/255, blue:CGFloat(bitmap[2])/255, alpha: 0.1)
             return result
         }else{

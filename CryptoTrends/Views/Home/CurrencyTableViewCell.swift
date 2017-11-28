@@ -16,6 +16,8 @@ class CurrencyTableViewCell: UITableViewCell {
     @IBOutlet weak var overlappinglabel: UILabel!
     @IBOutlet weak var cellBackgroundView: UIView!
     
+    var currency : CryptoCurrency?
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +41,7 @@ class CurrencyTableViewCell: UITableViewCell {
     func bindData(currency : CryptoCurrency){
         currencyTitle.attributedText = fillCurrencyTitle(currency: currency)
         currencyDescription.attributedText = fillCurrencyDescription(currency: currency)
+        self.currency = currency
         bindImage(name: currency.name)
     }
     

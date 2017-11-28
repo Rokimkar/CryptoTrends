@@ -24,9 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #else
             MoEngage.sharedInstance().initializeProd(withApiKey: "WTZ62TE0EFOZDUBSIPR6FASN", in: application, withLaunchOptions: launchOptions, openDeeplinkUrlAutomatically: true)
         #endif
-        
+        MoEngage.sharedInstance().setUserUniqueID(UIDevice.current.identifierForVendor?.uuidString)
         self.sendAppStatusToMoEngage()
-    MoEngage.sharedInstance().setUserUniqueID(UIDevice.current.identifierForVendor?.uuidString)
         return true
     }
 
