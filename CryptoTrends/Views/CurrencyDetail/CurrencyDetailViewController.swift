@@ -120,7 +120,7 @@ class CurrencyDetailViewController: UIViewController {
     
     func showAds(){
         bannerView = GADBannerView(adSize: GADAdSizeFullWidthPortraitWithHeight(50))
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/6300978111"
+        bannerView.adUnitID = "ca-app-pub-6026686664345507/3305924113" /*"ca-app-pub-3940256099942544/6300978111"*/
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self

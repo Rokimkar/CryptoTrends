@@ -24,6 +24,7 @@ class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 31/255, green: 72/255, blue: 24/255, alpha: 0.4)
     }
     
     func commonInit(){
@@ -66,6 +67,7 @@ extension SearchViewController : UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyTableViewCell", for: indexPath) as! CurrencyTableViewCell
+        cell.selectionStyle = .none
         cell.bindData(currency: searchResults[indexPath.row])
         return cell
     }

@@ -61,12 +61,11 @@ class HomeViewController: UIViewController {
     }
     
     func showAds(){
-        bannerView = GADBannerView(adSize: GADAdSizeFullWidthPortraitWithHeight(100))
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/6300978111"
+        bannerView = GADBannerView(adSize: GADAdSizeFullWidthPortraitWithHeight(50))
+        bannerView.adUnitID = /*"ca-app-pub-3940256099942544/6300978111"*/  "ca-app-pub-6026686664345507/6372179039"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
-        heightConstraintForAdView.constant = bannerView.frame.size.height
         self.adView.addSubview(bannerView)
         bannerView.clipsToBounds = true
     }
@@ -119,7 +118,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController : GADBannerViewDelegate{
     /// Tells the delegate an ad request loaded an ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        
+        heightConstraintForAdView.constant = bannerView.frame.size.height
         print("adViewDidReceiveAd")
     }
     
